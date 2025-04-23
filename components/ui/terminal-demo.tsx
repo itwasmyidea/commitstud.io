@@ -212,7 +212,7 @@ const TerminalDemo = () => {
                         duration: 0.2,
                         ease: "easeOut"
                       }}
-                      className={`${getLineStyle(line)} whitespace-pre-wrap break-words md:whitespace-nowrap mb-0.5 md:mb-1`}
+                      className={`${getLineStyle(line)} whitespace-pre-wrap break-words md:whitespace-nowrap mb-0.5 md:mb-1 text-xs md:text-sm`}
                     >
                       {line}
                     </motion.p>

@@ -151,7 +151,7 @@ export default function Footer({ onScrollTo }: FooterProps) {
             </svg>
             <span className="font-medium">Commit<span className="font-semibold">Stud</span>.<span className="font-semibold">io</span></span>
           </div>
-          <p className="text-sm text-zinc-500">© {new Date().getFullYear()} CommitStudio – AI‑powered code reviews for every commit.
+          <p className="text-xs text-zinc-500">© {new Date().getFullYear()} CommitStudio – AI‑powered code reviews for every commit.
 
               
           
