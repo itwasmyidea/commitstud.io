@@ -30,25 +30,8 @@ export default function AnalyticsCard() {
         </div>
       </div>
       
-      {/* Key Metrics - 2 columns instead of 3 */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-        {metrics.map((metric, index) => (
-          <motion.div 
-            key={metric.label}
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: index * 0.1 }}
-            className="bg-zinc-950/50 rounded-xl p-4 border border-zinc-800/50"
-          >
-            <p className="text-xs text-zinc-500 uppercase mb-1 tracking-wider">{metric.label}</p>
-            <p className="text-2xl font-medium text-white">{metric.value}</p>
-          </motion.div>
-        ))}
-      </div>
-      
       {/* Single Detail Card - full width */}
-      <div className="w-full">
+      <div className="w-full mb-8">
         {detailCards.map((card, index) => (
           <motion.div 
             key={index}
@@ -86,6 +69,23 @@ export default function AnalyticsCard() {
                 </div>
               </div>
             </div>
+          </motion.div>
+        ))}
+      </div>
+      
+      {/* Key Metrics - horizontal line */}
+      <div className="flex flex-col sm:flex-row justify-between gap-6">
+        {metrics.map((metric, index) => (
+          <motion.div 
+            key={metric.label}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: index * 0.1 }}
+            className="flex flex-col"
+          >
+            <p className="text-xs text-zinc-500 uppercase mb-1 tracking-wider">{metric.label}</p>
+            <p className="text-xl font-medium text-white">{metric.value}</p>
           </motion.div>
         ))}
       </div>
