@@ -4,12 +4,14 @@ import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { RefreshCcw } from "lucide-react"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 const TerminalDemo = () => {
   const [isAnimating, setIsAnimating] = useState(false)
   const [replay, setReplay] = useState(0)
   const terminalContentRef = useRef<HTMLDivElement>(null)
   const [terminalHeight, setTerminalHeight] = useState(400) // Set a fixed initial height
+  const isMobile = useIsMobile()
   
   // Command is pre-typed
   const commandLine = "$ commitstudio"
@@ -104,10 +106,10 @@ const TerminalDemo = () => {
     if (isAnimationComplete && terminalContentRef.current) {
       const height = terminalContentRef.current.getBoundingClientRect().height
       if (height > 0) {
-        setTerminalHeight(Math.max(height, 400)) // Ensure minimum height
+        setTerminalHeight(Math.max(height, isMobile ? 320 : 400)) // Shorter min-height on mobile
       }
     }
-  }, [isAnimationComplete])
+  }, [isAnimationComplete, isMobile])
 
   // Add custom styles for terminal placement
   useEffect(() => {
@@ -124,9 +126,10 @@ const TerminalDemo = () => {
       
       @media (max-width: 1023px) {
         .hero-terminal {
-          width: 100%;
+          width: 90%;
           max-width: 500px;
           margin: 0 auto;
+          transform: none;
         }
       }
     `
@@ -140,7 +143,7 @@ const TerminalDemo = () => {
   // Helper to get line styling
   const getLineStyle = (line: string) => {
     if (line.startsWith("✓")) return "text-green-400 font-medium"
-    if (line.startsWith("  ↪")) return "text-zinc-400 ml-6"
+    if (line.startsWith("  ↪")) return "text-zinc-400 ml-4 md:ml-6"
     return "text-zinc-300"
   }
   
@@ -152,35 +155,35 @@ const TerminalDemo = () => {
       viewport={{ once: true, margin: "-100px" }}
       className="max-w-4xl mx-auto bg-zinc-950 rounded-[0.75rem] overflow-hidden shadow-2xl border border-zinc-800 relative hero-terminal"
     >
-      <div className="flex items-center justify-between p-4 bg-zinc-900">
+      <div className="flex items-center justify-between p-3 md:p-4 bg-zinc-900">
         <div className="flex items-center">
           <div className="flex gap-2">
-            <div className="w-3 h-3 rounded-full bg-red-500"></div>
-            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-            <div className="w-3 h-3 rounded-full bg-green-500"></div>
+            <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-500"></div>
+            <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-yellow-500"></div>
+            <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-500"></div>
           </div>
-          <div className="ml-4 text-zinc-400 text-sm">Terminal</div>
+          <div className="ml-3 md:ml-4 text-zinc-400 text-xs md:text-sm">Terminal</div>
         </div>
         {isAnimationComplete && (
           <Button 
             variant="ghost" 
             size="icon" 
-            className="h-8 w-8 text-zinc-400 hover:text-white" 
+            className="h-7 w-7 md:h-8 md:w-8 text-zinc-400 hover:text-white" 
             onClick={handleReplay}
             title="Replay animation"
           >
-            <RefreshCcw className="h-4 w-4" />
+            <RefreshCcw className="h-3.5 w-3.5 md:h-4 md:w-4" />
           </Button>
         )}
       </div>
       <div 
-        className="text-zinc-300 font-mono text-sm relative overflow-hidden p-6"
+        className="text-zinc-300 font-mono text-2xs md:text-xs lg:text-sm relative overflow-hidden p-4 md:p-6"
         style={{ minHeight: `${terminalHeight}px` }}
       >
         <div ref={terminalContentRef} className="overflow-hidden">
           <div key={replay}>
             {/* Command is already typed */}
-            <p className="mb-4 flex">
+            <p className="mb-3 md:mb-4 flex">
               <span className="text-white mr-2">$</span>
               <span className="whitespace-nowrap">
                 commitstudio
@@ -191,7 +194,7 @@ const TerminalDemo = () => {
               <motion.span
                   animate={{ opacity: [1, 0, 1] }}
                   transition={{ duration: 0.8, repeat: Infinity }}
-                  className="inline-block w-2 h-4 bg-white ml-1"
+                  className="inline-block w-1.5 md:w-2 h-3 md:h-4 bg-white ml-1"
                 />
                 )}
             </p>
@@ -209,7 +212,7 @@ const TerminalDemo = () => {
                         duration: 0.2,
                         ease: "easeOut"
                       }}
-                      className={`${getLineStyle(line)} whitespace-nowrap mb-1`}
+                      className={`${getLineStyle(line)} whitespace-pre-wrap break-words md:whitespace-nowrap mb-0.5 md:mb-1`}
                     >
                       {line}
                     </motion.p>
@@ -221,7 +224,7 @@ const TerminalDemo = () => {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: [0.4, 1, 0.4] }}
                       transition={{ duration: 1.2, repeat: Infinity }}
-                      className="h-4 text-white/50 text-xs"
+                      className="h-3 md:h-4 text-white/50 text-xs"
                     >
                     </motion.div>
                   )}
@@ -235,13 +238,13 @@ const TerminalDemo = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}
-                className="mt-4 flex items-center"
+                className="mt-3 md:mt-4 flex items-center"
               >
                 <span className="text-white mr-2">$</span>
                 <motion.span
                   animate={{ opacity: [1, 0, 1] }}
                   transition={{ duration: 1, repeat: Infinity }}
-                  className="inline-block w-2 h-4 bg-white"
+                  className="inline-block w-1.5 md:w-2 h-3 md:h-4 bg-white"
                 />
               </motion.p>
             )}

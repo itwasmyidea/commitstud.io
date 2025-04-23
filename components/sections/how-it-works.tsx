@@ -1,10 +1,11 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { motion, useAnimationControls, useInView } from "framer-motion"
+import { motion, useAnimationControls, useInView, useScroll, useTransform } from "framer-motion"
 import { Container } from "@/components/ui/container"
 import { Terminal, GitBranch, Zap } from "lucide-react"
 import { howItWorksSteps } from "@/lib/content"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 interface Step {
   title: string
@@ -69,7 +70,7 @@ export default function HowItWorksSection() {
             className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-zinc-800 to-transparent hidden md:block" 
             initial={{ opacity: 0, height: 0 }}
             animate={isInView ? { opacity: 1, height: '100%' } : { opacity: 0, height: 0 }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
+            transition={{ duration: 1, ease: "easeInOut" }}
           />
           
           <div className="relative z-10 space-y-12 md:space-y-0">
@@ -90,35 +91,69 @@ export default function HowItWorksSection() {
 
 function StepCard({ step, index, isLast }: { step: Step; index: number; isLast: boolean }) {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const cardRef = useRef<HTMLDivElement>(null)
+  const isMobile = useIsMobile()
+  
+  // Using different view settings for mobile vs desktop
+  const viewportMargin = isMobile ? "-10%" : "-100px"
+  const viewportAmount = isMobile ? 0.6 : 0.1 // Requires 60% of element to be visible on mobile
+  
+  const isInView = useInView(ref, { 
+    once: false, // Allow re-entering view on mobile
+    margin: viewportMargin,
+    amount: viewportAmount
+  })
+  
   const controls = useAnimationControls()
   const [hovered, setHovered] = useState(false)
+  
+  // Use scroll-based animation for mobile
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "end start"]
+  })
+  
+  // Transform scroll progress into opacity
+  const cardOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.5, 0.7, 1],
+    [0.4, 0.7, 1, 0.7, 0.4]
+  )
   
   useEffect(() => {
     if (isInView) {
       controls.start("visible")
+    } else if (!isMobile) {
+      // Only reset on desktop
+      controls.start("hidden")
     }
-  }, [isInView, controls])
+  }, [isInView, controls, isMobile])
   
   const isEven = index % 2 === 0
   
   return (
     <div className="relative" ref={ref}>
       <motion.div
+        ref={cardRef}
         initial="hidden"
         animate={controls}
+        style={{
+          opacity: isMobile ? cardOpacity : undefined
+        }}
         variants={{
           hidden: { 
-            opacity: 0,
-            x: isEven ? -20 : 20
+            opacity: isMobile ? undefined : 0.4,
+            x: isEven ? -10 : 10,
+            y: isMobile ? 10 : 0
           },
           visible: { 
-            opacity: 1, 
+            opacity: isMobile ? undefined : 1, 
             x: 0,
+            y: 0,
             transition: {
-              duration: 0.6,
-              delay: index * 0.2,
-              ease: [0.25, 0.1, 0.25, 1.0]
+              duration: 0.5,
+              delay: index * 0.1,
+              ease: "easeOut"
             }
           }
         }}
@@ -137,8 +172,8 @@ function StepCard({ step, index, isLast }: { step: Step; index: number; isLast: 
             visible: { 
               width: 24, 
               transition: { 
-                duration: 0.4, 
-                delay: index * 0.2 + 0.4 
+                duration: 0.3, 
+                delay: index * 0.1 + 0.3 
               }
             }
           }}
@@ -164,8 +199,8 @@ function StepCard({ step, index, isLast }: { step: Step; index: number; isLast: 
               <div className="overflow-hidden rounded-md bg-zinc-950 border border-zinc-800 transition-all duration-300">
                 <motion.div 
                   className="p-3 font-mono text-xs text-blue-400 overflow-x-auto"
-                  animate={{ opacity: hovered ? 1 : 0.7 }}
-                  transition={{ duration: 0.3 }}
+                  animate={{ opacity: hovered ? 1 : 0.8 }}
+                  transition={{ duration: 0.2 }}
                 >
                   {step.code}
                 </motion.div>
@@ -180,22 +215,22 @@ function StepCard({ step, index, isLast }: { step: Step; index: number; isLast: 
                   height: isInView ? "auto" : 0
                 }}
                 transition={{ 
-                  opacity: { duration: 0.5, delay: index * 0.2 + 0.5 },
-                  height: { duration: 0.5, delay: index * 0.2 + 0.3 }
+                  opacity: { duration: 0.4, delay: 0.2 },
+                  height: { duration: 0.3, delay: 0.1 }
                 }}
                 className="mt-3 space-y-1 overflow-hidden"
               >
                 {step.details.map((detail, i) => (
                   <motion.div 
                     key={i}
-                    initial={{ opacity: 0, x: 10 }}
+                    initial={{ opacity: 0, x: 5 }}
                     animate={{ 
                       opacity: isInView ? 1 : 0, 
-                      x: isInView ? 0 : 10 
+                      x: isInView ? 0 : 5 
                     }}
                     transition={{ 
-                      duration: 0.4, 
-                      delay: index * 0.2 + 0.5 + (i * 0.1)
+                      duration: 0.3, 
+                      delay: 0.2 + (i * 0.1)
                     }}
                     className="flex items-start gap-2 text-xs"
                   >
