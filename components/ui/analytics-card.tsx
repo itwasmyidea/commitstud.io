@@ -15,10 +15,10 @@ export default function AnalyticsCard() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6 }}
-      className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-5 md:p-8 backdrop-blur-lg shadow-xl shadow-blue-500/5"
+      className="bg-zinc-900/80 border border-zinc-800 rounded-2xl p-4 md:p-5 backdrop-blur-lg shadow-xl shadow-blue-500/5"
     >
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
         <div className="flex items-center">
           <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
             <ChartBar className="h-5 w-5 text-white" />
@@ -31,7 +31,7 @@ export default function AnalyticsCard() {
       </div>
       
       {/* Single Detail Card - full width */}
-      <div className="w-full mb-8">
+      <div className="w-full mb-5">
         {detailCards.map((card, index) => (
           <motion.div 
             key={index}
@@ -74,7 +74,7 @@ export default function AnalyticsCard() {
       </div>
       
       {/* Key Metrics - horizontal line */}
-      <div className="flex flex-col sm:flex-row justify-between gap-6">
+      <div className="flex flex-col sm:flex-row justify-between gap-3 px-1">
         {metrics.map((metric, index) => (
           <motion.div 
             key={metric.label}
@@ -82,10 +82,10 @@ export default function AnalyticsCard() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: index * 0.1 }}
-            className="flex flex-col"
+            className="flex flex-row items-center gap-2 justify-center"
           >
-            <p className="text-xs text-zinc-500 uppercase mb-1 tracking-wider">{metric.label}</p>
-            <p className="text-xl font-medium text-white">{metric.value}</p>
+            <p className="text-xs inline-block text-zinc-500  ">{metric.label}</p>
+            <p className="text-sm inline-block font-medium text-white">{metric.value}</p>
           </motion.div>
         ))}
       </div>

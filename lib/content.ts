@@ -124,12 +124,12 @@ export const testimonials = [
 // Analytics card data
 export const analyticsCardData = {
   header: {
-    title: "Average Team Impact",
+    title: "Performance Impact",
     subtitle: "After using CommitStudio for 3 months",
   },
   metrics: [
     { label: "Commits Reviewed", value: "1,340+" },
-    { label: "Issues Found", value: "3,762" },
+    { label: "Issues Fixed", value: "3,762" },
   ],
   detailCards: [
     {
