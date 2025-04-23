@@ -1,0 +1,54 @@
+import { Metadata } from "next"
+import { DocHeading, DocSection, DocParagraph, DocList, NextSteps } from "@/components/ui/doc-components"
+
+export const metadata: Metadata = {
+  title: "Page Title - CommitStud.io Docs",
+  description: "Description of the page",
+}
+
+export default function PageNamePage() {
+  return (
+    <div className="space-y-6">
+      <DocHeading>Page Title</DocHeading>
+      
+      <DocSection title="Section Title" id="section-id">
+        <DocParagraph>
+          Your paragraph content goes here.
+        </DocParagraph>
+        
+        <DocList
+          items={[
+            <>Item one with <strong className="text-foreground">strong text</strong> if needed</>,
+            <>Item two</>,
+            <>Item three</>,
+          ]}
+        />
+      </DocSection>
+      
+      <DocSection title="Another Section">
+        <DocParagraph>
+          More content here.
+        </DocParagraph>
+        
+        {/* For numbered lists */}
+        <DocList
+          type="number"
+          items={[
+            <>Step one</>,
+            <>Step two</>,
+            <>Step three</>,
+          ]}
+        />
+      </DocSection>
+      
+      <NextSteps
+        title="Next Steps"
+        description="After completing this section, you can proceed to:"
+        links={[
+          { href: "/docs/related-page-1", label: "Related Page 1" },
+          { href: "/docs/related-page-2", label: "Related Page 2" },
+        ]}
+      />
+    </div>
+  )
+} 
