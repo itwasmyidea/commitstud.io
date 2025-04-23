@@ -12,10 +12,10 @@ export const siteMetadata = {
 
 // Navigation items
 export const navItems = [
+  { label: "Docs", href: "/docs" },
   { label: "Features", id: "feature-grid" },
   { label: "How It Works", id: "how-it-works" },
   { label: "Testimonials", id: "testimonials" },
-  { label: "Docs", href: "/docs" },
 ];
 
 // Hero section content
