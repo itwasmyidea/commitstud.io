@@ -130,7 +130,6 @@ export const analyticsCardData = {
   metrics: [
     { label: "Commits Reviewed", value: "1,340+" },
     { label: "Issues Found", value: "3,762" },
-    { label: "Hours Saved", value: "46" },
   ],
   detailCards: [
     {
@@ -139,13 +138,6 @@ export const analyticsCardData = {
       description: "Unclear commits caught before production",
       comparison: "+46%",
       metric: "Improved clarity",
-    },
-    {
-      title: "Saved Time",
-      value: "68%",
-      description: "Average PR review time saved",
-      comparison: "–3 min",
-      metric: "Time saved",
     },
   ],
 };

@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { ChartBar, ArrowDownWideNarrow, LineChart } from "lucide-react"
+import { ChartBar, LineChart } from "lucide-react"
 import { analyticsCardData } from "@/lib/content"
 import { useIsMobile } from "@/hooks/use-mobile"
 
@@ -30,8 +30,8 @@ export default function AnalyticsCard() {
         </div>
       </div>
       
-      {/* Key Metrics */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+      {/* Key Metrics - 2 columns instead of 3 */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
         {metrics.map((metric, index) => (
           <motion.div 
             key={metric.label}
@@ -47,25 +47,21 @@ export default function AnalyticsCard() {
         ))}
       </div>
       
-      {/* Detail Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {/* Single Detail Card - full width */}
+      <div className="w-full">
         {detailCards.map((card, index) => (
           <motion.div 
             key={index}
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-            className="bg-zinc-950/80 border border-zinc-800/50 rounded-xl overflow-hidden"
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="bg-zinc-950/80 border border-zinc-800/50 rounded-xl overflow-hidden w-full"
           >
             <div className="p-4 md:p-5">
               <div className="flex justify-between items-start mb-3">
                 <div className="flex items-center">
-                  {index === 0 ? (
-                    <LineChart className="w-4 h-4 text-blue-400 mr-2" />
-                  ) : (
-                    <ArrowDownWideNarrow className="w-4 h-4 text-blue-400 mr-2" />
-                  )}
+                  <LineChart className="w-4 h-4 text-blue-400 mr-2" />
                   <p className="text-xs text-zinc-400 uppercase tracking-wider">{card.title}</p>
                 </div>
                 <div className="ml-2 px-2 py-0.5 text-xs font-medium rounded-full bg-blue-500/10 text-blue-400">
