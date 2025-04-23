@@ -3,11 +3,12 @@
 import { motion } from "framer-motion"
 import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Copy, Check } from "lucide-react"
 import TerminalDemo from "@/components/ui/terminal-demo"
 import { Container } from "@/components/ui/container"
 import PackageInstaller from "@/components/ui/package-installer"
 import { heroContent } from "@/lib/content"
+import { packageManagers } from "@/lib/content"
 
 interface HeroSectionProps {
   onScrollTo: (id: string) => void;
@@ -16,9 +17,18 @@ interface HeroSectionProps {
 export default function HeroSection({ onScrollTo }: HeroSectionProps) {
   const heroRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
+  const [copied, setCopied] = useState(false)
   
   // Title reveal effects
   const titleWords = heroContent.title
+
+  // Handle copy for Get Started button
+  const handleCopyInstallCommand = () => {
+    // Copy npm global command by default
+    navigator.clipboard.writeText(packageManagers.npm.global)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
 
   return (
     <section ref={heroRef} className="relative py-12 md:py-20 overflow-hidden">
@@ -96,27 +106,47 @@ export default function HeroSection({ onScrollTo }: HeroSectionProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              className="mt-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start w-full"
             >
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div 
+                whileHover={{ scale: 1.05 }} 
+                whileTap={{ scale: 0.95 }}
+                className="w-full sm:w-auto"
+              >
                 <Button
-                  className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 transition-all duration-200 text-white rounded-full text-sm py-5 px-7 shadow-lg shadow-blue-500/20 relative overflow-hidden group"
-                  onClick={() => onScrollTo('get-started')}
+                  className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 transition-all duration-200 text-white rounded-full text-sm py-5 px-7 shadow-lg shadow-blue-500/20 relative overflow-hidden group w-full sm:w-auto"
+                  onClick={handleCopyInstallCommand}
                 >
                   <motion.span 
                     className="absolute inset-0 brand-gradient-bg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   />
-                  <motion.span className="relative z-10">Get Started</motion.span>
+                  <motion.span className="relative z-10 flex items-center justify-center">
+                    {copied ? (
+                      <>
+                        <Check className="w-4 h-4 mr-2" />
+                        Copied!
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-4 h-4 mr-2" />
+                        Copy Install Command
+                      </>
+                    )}
+                  </motion.span>
                 </Button>
               </motion.div>
               
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div 
+                whileHover={{ scale: 1.05 }} 
+                whileTap={{ scale: 0.95 }}
+                className="w-full sm:w-auto"
+              >
                 <Button
                   variant="outline"
-                  className="border-zinc-700 text-zinc-200 hover:bg-zinc-800 rounded-full text-sm py-5 px-7 relative overflow-hidden"
+                  className="border-zinc-700 text-zinc-200 hover:bg-zinc-800 rounded-full text-sm py-5 px-7 relative overflow-hidden w-full sm:w-auto"
                   onClick={() => onScrollTo('how-it-works')}
                 >
-                  <span className="relative z-10 flex items-center">
+                  <span className="relative z-10 flex items-center justify-center">
                     See How It Works <ArrowRight className="ml-2 h-4 w-4" />
                   </span>
                 </Button>
