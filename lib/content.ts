@@ -13,6 +13,7 @@ export const siteMetadata = {
 // Navigation items
 export const navItems = [
   { label: "Docs", href: "/docs" },
+  { label: "Features", id: "feature-grid" },
   { label: "How It Works", id: "how-it-works" },
   { label: "Testimonials", id: "testimonials" },
 ];
@@ -140,7 +141,7 @@ export const analyticsCardData = {
       metric: "Improved clarity",
     },
     {
-      title: "Review Time Reduction",
+      title: "Saved Time",
       value: "68%",
       description: "Average PR review time saved",
       comparison: "–3 min",
@@ -318,36 +319,42 @@ export const documentationItems = [
   {
     title: "Quick Start Guide",
     description: "Get up and running with CommitStudio in under 5 minutes with our step-by-step quickstart guide.",
-    link: "https://github.com/itwasmyidea#readme",
-    external: true,
+    link: "/docs/quick-start",
+    external: false,
     icon: "BookOpen"
   },
   {
     title: "API Reference",
     description: "Detailed documentation of CommitStudio's API for advanced integration with your development workflow.",
+    link: "/docs/api-reference",
+    external: false,
     icon: "Code"
   },
   {
     title: "CLI Commands",
     description: "Comprehensive reference for all available command-line options and configuration settings.",
+    link: "/docs/command-line-reference",
+    external: false,
     icon: "Terminal"
   },
   {
     title: "Configuration",
     description: "Learn how to create a config file to customize CommitStudio's behavior for your specific project needs.",
+    link: "/docs/configuration-options",
+    external: false,
     icon: "FileText"
   },
   {
     title: "GitHub Integration",
     description: "Step-by-step guide for setting up CommitStudio with your GitHub repositories and workflow.",
-    link: "https://github.com/itwasmyidea",
-    external: true,
+    link: "/docs/github-oauth-configuration",
+    external: false,
     icon: "Github"
   },
   {
     title: "Changelog",
     description: "Stay up to date with the latest features, improvements, and bug fixes in each release.",
-    link: "https://github.com/itwasmyidea/blob/main/CHANGELOG.md",
+    link: "https://github.com/itwasmyidea/commitstud.io/blob/main/CHANGELOG.md",
     external: true,
     icon: "ExternalLink"
   }

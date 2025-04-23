@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Container } from "@/components/ui/container"
 import AnalyticsCard from "@/components/ui/analytics-card"
 import { testimonials } from "@/lib/content"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 interface TestimonialCardProps {
   quote: string;
@@ -19,115 +20,121 @@ interface TestimonialCardProps {
 
 export default function TestimonialsSection() {
   const containerRef = useRef<HTMLDivElement>(null)
+  const isMobile = useIsMobile()
   
   return (
     <section className="py-16 bg-zinc-950 overflow-hidden" id="testimonials">
       <Container>
-        <div className="flex flex-col items-center mb-12">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center max-w-2xl mx-auto"
-          >
-            <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-6">
-              <span className="brand-gradient-text">
-                Real Results, Real Impact
-              </span>
-            </h2>
-            <p className="text-lg text-zinc-400 mb-8">
-              See how teams are cutting review time and improving code quality with 
-              CommitStudio's AI-powered analysis and automated feedback.
-            </p>
-          </motion.div>
-          
-          {/* Testimonials container centered with 50% width */}
-          <div className="w-full max-w-full md:max-w-[55%] lg:max-w-[50%] mx-auto relative">
-            <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-zinc-950 to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-zinc-950 to-transparent z-10 pointer-events-none"></div>
-            
-            <div className="testimonial-container">
-              <div className="testimonial-track">
-                {/* First set */}
-                {testimonials.map((testimonial, index) => (
-                  <div
-                    key={`first-${index}`}
-                    className="testimonial-card"
-                  >
-                    <div className="flex-1">
-                      <div className="flex mb-4 text-brand-light">
-                        <Quote className="h-6 w-6 opacity-50 flex-shrink-0" />
+        {/* Title section - always centered */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center max-w-2xl mx-auto mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-6">
+            <span className="brand-gradient-text">
+              Real Results, Real Impact
+            </span>
+          </h2>
+          <p className="text-lg text-zinc-400 mb-8">
+            See how teams are cutting review time and improving code quality with 
+            CommitStudio's AI-powered analysis and automated feedback.
+          </p>
+        </motion.div>
+        
+        {/* Desktop layout */}
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+          {/* Left side - testimonials */}
+          <div className="w-full lg:w-3/5 mx-auto order-2 lg:order-1">
+            {/* Testimonials container */}
+            <div className="w-full max-w-full md:max-w-[55%] lg:max-w-full mx-auto relative">
+              <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-zinc-950 to-transparent z-10 pointer-events-none"></div>
+              <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-zinc-950 to-transparent z-10 pointer-events-none"></div>
+              
+              <div className="testimonial-container">
+                <div className="testimonial-track">
+                  {/* First set */}
+                  {testimonials.map((testimonial, index) => (
+                    <div
+                      key={`first-${index}`}
+                      className="testimonial-card"
+                    >
+                      <div className="flex-1">
+                        <div className="flex mb-4 text-brand-light">
+                          <Quote className="h-6 w-6 opacity-50 flex-shrink-0" />
+                        </div>
+                        
+                        <p className="text-zinc-300 text-sm leading-relaxed mb-6">{testimonial.quote}</p>
                       </div>
                       
-                      <p className="text-zinc-300 text-sm leading-relaxed mb-6">{testimonial.quote}</p>
-                    </div>
-                    
-                    <div className="flex items-center mt-4">
-                      <div className="rounded-full bg-zinc-800 w-10 h-10 flex items-center justify-center text-blue-400 font-semibold text-sm overflow-hidden">
-                        {testimonial.author.split(' ').map(name => name[0]).join('')}
-                      </div>
-                      <div className="ml-3">
-                        <p className="font-medium text-zinc-200 text-sm">{testimonial.author}</p>
-                        <p className="text-zinc-500 text-xs">{testimonial.role}, {testimonial.company}</p>
-                      </div>
-                      <div className="ml-auto flex">
-                        {[...Array(5)].map((_, i) => (
-                          <Star
-                            key={i}
-                            size={14}
-                            className={`${i < testimonial.rating ? "text-yellow-400" : "text-zinc-700"}`}
-                            fill={i < testimonial.rating ? "#FBBF24" : "none"}
-                          />
-                        ))}
+                      <div className="flex items-center mt-4">
+                        <div className="rounded-full bg-zinc-800 w-10 h-10 flex items-center justify-center text-blue-400 font-semibold text-sm overflow-hidden">
+                          {testimonial.author.split(' ').map(name => name[0]).join('')}
+                        </div>
+                        <div className="ml-3">
+                          <p className="font-medium text-zinc-200 text-sm">{testimonial.author}</p>
+                          <p className="text-zinc-500 text-xs">{testimonial.role}, {testimonial.company}</p>
+                        </div>
+                        <div className="ml-auto flex">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              size={14}
+                              className={`${i < testimonial.rating ? "text-yellow-400" : "text-zinc-700"}`}
+                              fill={i < testimonial.rating ? "#FBBF24" : "none"}
+                            />
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
-                
-                {/* Duplicated set for seamless loop */}
-                {testimonials.map((testimonial, index) => (
-                  <div
-                    key={`second-${index}`}
-                    className="testimonial-card"
-                  >
-                    <div className="flex-1">
-                      <div className="flex mb-4 text-brand-light">
-                        <Quote className="h-6 w-6 opacity-50 flex-shrink-0" />
+                  ))}
+                  
+                  {/* Duplicated set for seamless loop */}
+                  {testimonials.map((testimonial, index) => (
+                    <div
+                      key={`second-${index}`}
+                      className="testimonial-card"
+                    >
+                      <div className="flex-1">
+                        <div className="flex mb-4 text-brand-light">
+                          <Quote className="h-6 w-6 opacity-50 flex-shrink-0" />
+                        </div>
+                        
+                        <p className="text-zinc-300 text-sm leading-relaxed mb-6">{testimonial.quote}</p>
                       </div>
                       
-                      <p className="text-zinc-300 text-sm leading-relaxed mb-6">{testimonial.quote}</p>
-                    </div>
-                    
-                    <div className="flex items-center mt-4">
-                      <div className="rounded-full bg-zinc-800 w-10 h-10 flex items-center justify-center text-blue-400 font-semibold text-sm overflow-hidden">
-                        {testimonial.author.split(' ').map(name => name[0]).join('')}
-                      </div>
-                      <div className="ml-3">
-                        <p className="font-medium text-zinc-200 text-sm">{testimonial.author}</p>
-                        <p className="text-zinc-500 text-xs">{testimonial.role}, {testimonial.company}</p>
-                      </div>
-                      <div className="ml-auto flex">
-                        {[...Array(5)].map((_, i) => (
-                          <Star
-                            key={i}
-                            size={14}
-                            className={`${i < testimonial.rating ? "text-yellow-400" : "text-zinc-700"}`}
-                            fill={i < testimonial.rating ? "#FBBF24" : "none"}
-                          />
-                        ))}
+                      <div className="flex items-center mt-4">
+                        <div className="rounded-full bg-zinc-800 w-10 h-10 flex items-center justify-center text-blue-400 font-semibold text-sm overflow-hidden">
+                          {testimonial.author.split(' ').map(name => name[0]).join('')}
+                        </div>
+                        <div className="ml-3">
+                          <p className="font-medium text-zinc-200 text-sm">{testimonial.author}</p>
+                          <p className="text-zinc-500 text-xs">{testimonial.role}, {testimonial.company}</p>
+                        </div>
+                        <div className="ml-auto flex">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              size={14}
+                              className={`${i < testimonial.rating ? "text-yellow-400" : "text-zinc-700"}`}
+                              fill={i < testimonial.rating ? "#FBBF24" : "none"}
+                            />
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        
-        {/* Analytics card in its own row */}
-        <div className="mt-16">
-          <AnalyticsCard />
+          
+          {/* Right side - analytics card */}
+          <div className="w-full lg:w-2/5 order-1 lg:order-2">
+            <AnalyticsCard />
+          </div>
         </div>
       </Container>
       
