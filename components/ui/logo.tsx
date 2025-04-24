@@ -87,7 +87,7 @@ const Logo = () => {
         </motion.svg>
       </motion.div>
       <motion.span 
-        className="font-medium text-xl tracking-tight flex"
+        className="font-medium text-xl tracking-tight flex items-center"
         initial={{ opacity: 0, y: 5 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -99,6 +99,14 @@ const Logo = () => {
         </motion.span> 
         <motion.span>
           Studio
+        </motion.span>
+        <motion.span
+          className="ml-2 text-xs text-zinc-400 font-normal"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.9 }}
+        >
+          by SofTx
         </motion.span>
       </motion.span>
     </Link>

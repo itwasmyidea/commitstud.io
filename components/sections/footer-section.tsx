@@ -6,6 +6,7 @@ import Logo from "@/components/ui/logo"
 import { Github, X, ExternalLink } from "lucide-react"
 import LegalPopup from "@/components/ui/legal-popup"
 import { footerLinks, navItems, resourceLinks, companyLinks } from "@/lib/content"
+import Image from "next/image"
 
 interface FooterProps {
   onScrollTo: (id: string) => void
@@ -138,6 +139,14 @@ export default function Footer({ onScrollTo }: FooterProps) {
         
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-zinc-800/50">
           <div className="mb-4 md:mb-0 flex items-center">
+            <Image 
+              src="/softx-logo.svg" 
+              alt="SofTx"
+              width={80}
+              height={32}
+              className="mr-2"
+            />
+            <div className="mx-2 h-4 w-px bg-zinc-700"></div>
             <svg 
               width="16" 
               height="16" 
