@@ -13,23 +13,19 @@ interface DocCardProps {
   description: string;
   link?: string;
   external?: boolean;
-  isHovered: boolean;
-  onHover: (hovered: boolean) => void;
 }
 
 export default function DocumentationSection() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  
   // Map icon strings to actual components
   const getIconComponent = (iconName: string) => {
     switch(iconName) {
-      case "BookOpen": return <BookOpen className="h-6 w-6 text-brand-light" />;
-      case "Code": return <Code className="h-6 w-6 text-brand-light" />;
-      case "Terminal": return <Terminal className="h-6 w-6 text-brand-light" />;
-      case "FileText": return <FileText className="h-6 w-6 text-brand-light" />;
-      case "Github": return <Github className="h-6 w-6 text-brand-light" />;
-      case "ExternalLink": return <ExternalLink className="h-6 w-6 text-brand-light" />;
-      default: return <BookOpen className="h-6 w-6 text-brand-light" />;
+      case "BookOpen": return <BookOpen className="h-6 w-6" />;
+      case "Code": return <Code className="h-6 w-6" />;
+      case "Terminal": return <Terminal className="h-6 w-6" />;
+      case "FileText": return <FileText className="h-6 w-6" />;
+      case "Github": return <Github className="h-6 w-6" />;
+      case "ExternalLink": return <ExternalLink className="h-6 w-6" />;
+      default: return <BookOpen className="h-6 w-6" />;
     }
   };
 
@@ -58,10 +54,6 @@ export default function DocumentationSection() {
               description={item.description}
               link={item.link}
               external={item.external}
-              isHovered={hoveredIndex !== null && hoveredIndex !== index}
-              onHover={(hovered) => {
-                setHoveredIndex(hovered ? index : null);
-              }}
             />
           ))}
         </div>
@@ -70,7 +62,7 @@ export default function DocumentationSection() {
   )
 }
 
-function DocCard({ icon, title, description, link, external, isHovered, onHover }: DocCardProps) {
+function DocCard({ icon, title, description, link, external }: DocCardProps) {
   const CardWrapper = ({ children }: { children: React.ReactNode }) => {
     if (link) {
       return (
@@ -79,17 +71,12 @@ function DocCard({ icon, title, description, link, external, isHovered, onHover 
           target={external ? "_blank" : undefined}
           rel={external ? "noopener noreferrer" : undefined}
           className="block h-full cursor-pointer"
-          onMouseEnter={() => onHover(true)}
-          onMouseLeave={() => onHover(false)}
         >
           {children}
         </Link>
       );
     }
-    return <div 
-      onMouseEnter={() => onHover(true)}
-      onMouseLeave={() => onHover(false)}
-    >{children}</div>;
+    return <>{children}</>;
   };
 
   return (
@@ -99,10 +86,10 @@ function DocCard({ icon, title, description, link, external, isHovered, onHover 
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true, margin: "-100px" }}
-        className={`bg-zinc-900 hover:cursor-pointer rounded-[0.75rem] group p-8 shadow-lg border border-zinc-800 h-full hover:bg-zinc-800 transition-all duration-300 ${isHovered ? 'opacity-40' : 'opacity-100'}`}
+        className="bg-zinc-900 hover:cursor-pointer rounded-[0.75rem] group p-8 shadow-lg border border-zinc-800 h-full hover:bg-zinc-800 transition-all duration-300" 
       >
         <div className="w-12 h-12 bg-zinc-800 text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300 rounded-full flex items-center justify-center mb-6">{icon}</div>
-        <h3 className="text-lg font-medium mb-3 text-zinc-100">{title}</h3>
+        <h3 className="text-xl font-medium mb-3 text-zinc-100">{title}</h3>
         <p className="text-zinc-400 text-sm">{description}</p>
         
         {link && external && (
