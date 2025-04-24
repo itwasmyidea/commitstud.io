@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     siteName: 'CommitStudio',
     images: [
       {
-        url: '/hero.png',
+        url: 'meta/og.png',
         width: 1200,
         height: 630,
         alt: siteMetadata.title,
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     title: siteMetadata.title,
     description: siteMetadata.description,
     creator: '@commitstudio',
-    images: ['/hero.png'],
+    images: ['meta/og.png'],
   },
   icons: {
     icon: [
