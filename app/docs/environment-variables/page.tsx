@@ -3,7 +3,7 @@
 import { DocHeading, DocSection, DocParagraph, DocList, NextSteps, DocPrevNext } from "@/components/ui/doc-components"
 import { getPageNavigation } from "../client-layout"
 import { usePathname } from "next/navigation"
-
+import { technicalSpecs, docsContent } from "@/lib/docs-content"
 
 export default function EnvironmentVariablesPage() {
   const pathname = usePathname();
@@ -31,16 +31,17 @@ export default function EnvironmentVariablesPage() {
               </tr>
             </thead>
             <tbody className="divide-y">
-              <tr>
-                <td className="px-4 py-3 font-mono text-sm text-primary">GITHUB_TOKEN</td>
-                <td className="px-4 py-3 text-muted-foreground">GitHub personal access token with 'repo' scope</td>
-                <td className="px-4 py-3 font-mono text-xs text-muted-foreground">ghp_123abc...</td>
-              </tr>
-              <tr>
-                <td className="px-4 py-3 font-mono text-sm text-primary">OPENAI_API_KEY</td>
-                <td className="px-4 py-3 text-muted-foreground">OpenAI API key for AI-powered analysis</td>
-                <td className="px-4 py-3 font-mono text-xs text-muted-foreground">sk-123abc...</td>
-              </tr>
+              {docsContent.envVars.map((variable, index) => (
+                <tr key={index}>
+                  <td className="px-4 py-3 font-mono text-sm text-primary">{variable.name}</td>
+                  <td className="px-4 py-3 text-muted-foreground">{variable.description}</td>
+                  <td className="px-4 py-3 font-mono text-xs text-muted-foreground">
+                    {variable.name === "GITHUB_TOKEN" && "ghp_123abc..."}
+                    {variable.name === "OPENAI_API_KEY" && "sk-123abc..."}
+                    {variable.name === "GITHUB_CLIENT_ID" && "1234567890abcdef"}
+                  </td>
+                </tr>
+              ))}
               <tr>
                 <td className="px-4 py-3 font-mono text-sm text-primary">COMMITSTUDIO_CACHE_DIR</td>
                 <td className="px-4 py-3 text-muted-foreground">Custom directory for CommitStudio cache files</td>
@@ -64,7 +65,7 @@ export default function EnvironmentVariablesPage() {
               <tr>
                 <td className="px-4 py-3 font-mono text-sm text-primary">COMMITSTUDIO_MODEL</td>
                 <td className="px-4 py-3 text-muted-foreground">OpenAI model to use</td>
-                <td className="px-4 py-3 font-mono text-xs text-muted-foreground">gpt-4-mini</td>
+                <td className="px-4 py-3 font-mono text-xs text-muted-foreground">{technicalSpecs.openai.defaultModel}</td>
               </tr>
             </tbody>
           </table>

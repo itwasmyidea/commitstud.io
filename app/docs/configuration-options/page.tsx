@@ -3,6 +3,7 @@
 import { DocHeading, DocSection, DocParagraph, DocList, NextSteps, DocPrevNext } from "@/components/ui/doc-components"
 import { getPageNavigation } from "../client-layout"
 import { usePathname } from "next/navigation"
+import { technicalSpecs } from "@/lib/docs-content"
 
 export default function ConfigurationOptionsPage() {
   const pathname = usePathname();
@@ -29,8 +30,8 @@ export default function ConfigurationOptionsPage() {
           {`// .commitstudiorc.json
 {
   "api": {
-    "model": "gpt-4",
-    "temperature": 0.7
+    "model": "${technicalSpecs.openai.defaultModel}",
+    "temperature": ${technicalSpecs.openai.temperature}
   },
   "github": {
     "postComments": false,
@@ -51,8 +52,8 @@ export default function ConfigurationOptionsPage() {
           {`// .commitstudiorc.js
 module.exports = {
   api: {
-    model: process.env.COMMITSTUDIO_MODEL || 'gpt-4',
-    temperature: 0.7
+    model: process.env.COMMITSTUDIO_MODEL || '${technicalSpecs.openai.defaultModel}',
+    temperature: ${technicalSpecs.openai.temperature}
   },
   // More configuration...
 }`}
@@ -77,12 +78,12 @@ module.exports = {
               <tr className="border-b border-border">
                 <td className="py-2 px-4"><code className="bg-muted text-muted-foreground px-1 py-0.5 rounded text-sm">api.model</code></td>
                 <td className="py-2 px-4">AI model to use for analysis</td>
-                <td className="py-2 px-4">gpt-4</td>
+                <td className="py-2 px-4">{technicalSpecs.openai.defaultModel}</td>
               </tr>
               <tr className="border-b border-border">
                 <td className="py-2 px-4"><code className="bg-muted text-muted-foreground px-1 py-0.5 rounded text-sm">api.temperature</code></td>
                 <td className="py-2 px-4">Randomness of responses (0-1)</td>
-                <td className="py-2 px-4">0.7</td>
+                <td className="py-2 px-4">{technicalSpecs.openai.temperature}</td>
               </tr>
               <tr className="border-b border-border">
                 <td className="py-2 px-4"><code className="bg-muted text-muted-foreground px-1 py-0.5 rounded text-sm">api.timeout</code></td>
@@ -92,7 +93,7 @@ module.exports = {
               <tr className="border-b border-border">
                 <td className="py-2 px-4"><code className="bg-muted text-muted-foreground px-1 py-0.5 rounded text-sm">api.maxTokens</code></td>
                 <td className="py-2 px-4">Maximum tokens per request</td>
-                <td className="py-2 px-4">4096</td>
+                <td className="py-2 px-4">{technicalSpecs.openai.maxTokens}</td>
               </tr>
               <tr className="border-b border-border">
                 <td className="py-2 px-4"><code className="bg-muted text-muted-foreground px-1 py-0.5 rounded text-sm">api.retries</code></td>
@@ -313,7 +314,7 @@ module.exports = {
         <pre className="bg-muted rounded-md p-4 overflow-x-auto text-sm my-4">
           {`{
   "api": {
-    "model": "gpt-4",
+    "model": "gpt-4.1-mini",
     "temperature": 0.7,
     "timeout": 30000,
     "maxTokens": 4096,
