@@ -1,8 +1,8 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Container } from "@/components/ui/container"
-import { motion } from "framer-motion"
+import { motion, useScroll, useTransform, useInView } from "framer-motion"
 import { featureGridItems } from "@/lib/content"
 
 interface FeatureItem {
@@ -28,9 +28,27 @@ export default function FeatureGrid() {
 }
 
 function FeatureGridItem({ content, index }: FeatureItem & { index: number }) {
-  const [isHovered, setIsHovered] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
   const [isMobile, setIsMobile] = useState(false)
-  const [isTouched, setIsTouched] = useState(false)
+  
+  // Use inView with a threshold to determine when the element is centered in the viewport
+  const isInView = useInView(ref, { 
+    amount: 0.8, // How much of the element needs to be in view
+    once: false // Make it trigger every time it enters/leaves the viewport
+  })
+  
+  // For scroll-based highlighting on mobile
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  })
+  
+  // Transform scroll progress into opacity
+  const cardOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.4, 0.5, 0.6, 1],
+    [0.4, 0.6, 1, 0.6, 0.4]
+  )
   
   // Split content into title (first sentence) and body
   const firstPeriodIndex = content.indexOf('.')
@@ -49,37 +67,19 @@ function FeatureGridItem({ content, index }: FeatureItem & { index: number }) {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
   
-  // Handle touch events
-  const handleTouchStart = () => {
-    setIsTouched(true)
-    setIsHovered(true)
-  }
-  
-  const handleTouchEnd = () => {
-    setTimeout(() => {
-      setIsTouched(false)
-      setIsHovered(false)
-    }, 1000)
-  }
-  
   return (
     <motion.div
+      ref={ref}
       className="group relative px-5 md:px-8 py-10 cursor-pointer"
-      onMouseEnter={() => !isTouched && setIsHovered(true)}
-      onMouseLeave={() => !isTouched && setIsHovered(false)}
-      onFocus={() => setIsHovered(true)}
-      onBlur={() => setIsHovered(false)}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      animate={{ 
-        opacity: isHovered || isMobile ? 1 : 0.8,
+      style={{
+        opacity: isMobile ? cardOpacity : isInView ? 1 : 0.4
       }}
     >
-      <p className="text-lg opacity-40 hover:opacity-100 transition-opacity duration-300 md:text-xl font-medium tracking-tight leading-normal">
+      <p className="text-lg md:text-xl font-medium tracking-tight leading-normal transition-all duration-300">
         <span className="text-white">{title}</span>{' '}
         <span className="text-zinc-500">{body}</span>
       </p>
