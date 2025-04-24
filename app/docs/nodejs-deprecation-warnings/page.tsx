@@ -240,7 +240,6 @@ node --version`}
         ]}
       />
       
-      <DocPrevNext prev={prev} next={next} />
-    </div>
+      </div>
   )
 } 

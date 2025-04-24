@@ -288,7 +288,6 @@ commitstudio auth github`}
         ]}
       />
       
-      <DocPrevNext prev={prev} next={next} />
-    </div>
+      </div>
   )
 } 

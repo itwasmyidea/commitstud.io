@@ -104,7 +104,6 @@ export default function QuickStartPage() {
         ]}
       />
       
-      <DocPrevNext prev={prev} next={next} />
-    </div>
+      </div>
   )
 } 

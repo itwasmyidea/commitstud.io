@@ -44,8 +44,7 @@ export default function RepositoryDetectionPage() {
         
         <div className="bg-muted rounded-md p-4 my-4 font-mono text-sm">
           commitstudio --path /path/to/repository
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
         
         <DocParagraph>
           This is useful when:
@@ -102,8 +101,7 @@ export default function RepositoryDetectionPage() {
         
         <div className="bg-muted rounded-md p-4 my-4 font-mono text-sm">
           export COMMITSTUDIO_GITHUB_API_URL=https://github.mycompany.com/api/v3
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
       </DocSection>
       
       <DocSection title="Common Issues">
@@ -129,7 +127,6 @@ export default function RepositoryDetectionPage() {
           { href: "/docs/common-issues", label: "Common Issues" },
         ]}
       />
-      <DocPrevNext prev={prev} next={next} />
-    </div>
+      </div>
   )
 } 

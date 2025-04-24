@@ -58,8 +58,7 @@ export default function CredentialsManagementPage() {
         
         <div className="bg-muted rounded-md p-4 my-4 font-mono text-sm">
           commitstudio configure
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
         
         <DocParagraph>
           This interactive command will guide you through setting up your GitHub and OpenAI credentials.
@@ -82,8 +81,7 @@ export default function CredentialsManagementPage() {
         
         <div className="bg-muted rounded-md p-4 my-4 font-mono text-sm">
           commitstudio reset
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
         
         <DocParagraph>
           This command removes all stored credentials and configuration settings. You'll need to
@@ -115,7 +113,6 @@ export default function CredentialsManagementPage() {
           { href: "/docs/using-with-cicd", label: "CI/CD Integration" },
         ]}
       />
-      <DocPrevNext prev={prev} next={next} />
-    </div>
+      </div>
   )
 } 

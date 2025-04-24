@@ -207,7 +207,6 @@ export default function GitHubApiRateLimitsPage() {
         ]}
       />
       
-      <DocPrevNext prev={prev} next={next} />
-    </div>
+      </div>
   )
 } 

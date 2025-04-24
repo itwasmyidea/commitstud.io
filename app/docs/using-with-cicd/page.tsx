@@ -86,8 +86,7 @@ jobs:
         env:
           GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: \${{ secrets.OPENAI_API_KEY }}`}</pre>
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
         
         <DocParagraph>
           Make sure to add your OpenAI API key as a secret in your GitHub repository settings.
@@ -117,8 +116,7 @@ commitstudio:
   environment:
     name: review/$CI_COMMIT_REF_NAME
   allow_failure: true`}</pre>
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
         
         <DocParagraph>
           Add <code className="bg-muted px-1 py-0.5 rounded text-sm">GITHUB_TOKEN</code> and <code className="bg-muted px-1 py-0.5 rounded text-sm">OPENAI_API_KEY</code> as
@@ -157,8 +155,7 @@ workflows:
   commit-analysis:
     jobs:
       - analyze`}</pre>
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
         
         <DocParagraph>
           Add <code className="bg-muted px-1 py-0.5 rounded text-sm">GITHUB_TOKEN</code> and <code className="bg-muted px-1 py-0.5 rounded text-sm">OPENAI_API_KEY</code> as
@@ -192,8 +189,7 @@ workflows:
         }
     }
 }`}</pre>
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
         
         <DocParagraph>
           Add your GitHub token and OpenAI API key as credentials in Jenkins.
@@ -224,7 +220,6 @@ workflows:
           { href: "/docs/filtering-commits", label: "Filtering Commits" },
         ]}
       />
-      <DocPrevNext prev={prev} next={next} />
-    </div>
+      </div>
   )
 } 

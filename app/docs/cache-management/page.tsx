@@ -194,7 +194,6 @@ commitstudio cache clear --type=repositories`}
         ]}
       />
       
-      <DocPrevNext prev={prev} next={next} />
-    </div>
+      </div>
   )
 } 

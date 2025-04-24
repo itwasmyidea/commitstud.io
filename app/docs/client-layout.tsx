@@ -40,6 +40,7 @@ const sidebarItems = [
   {
     title: "Configuration",
     items: [
+      { title: "Configuration Options", href: "/docs/configuration-options" },
       { title: "Environment Variables", href: "/docs/environment-variables" },
       { title: "Credentials Management", href: "/docs/credentials-management" },
       { title: "Repository Detection", href: "/docs/repository-detection" },
@@ -64,7 +65,6 @@ const sidebarItems = [
     items: [
       { title: "Command Line Reference", href: "/docs/command-line-reference" },
       { title: "API Reference", href: "/docs/api-reference" },
-      { title: "Configuration Options", href: "/docs/configuration-options" },
     ],
   },
 ]

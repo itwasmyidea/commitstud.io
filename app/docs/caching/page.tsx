@@ -94,22 +94,19 @@ export default function CachingPage() {
         
         <div className="bg-muted rounded-md p-4 my-4 font-mono text-sm">
           commitstudio cache:clear
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
         
         <h3 className="text-md font-medium mb-2 mt-4">Viewing Cache Information</h3>
         
         <div className="bg-muted rounded-md p-4 my-4 font-mono text-sm">
           commitstudio cache:info
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
         
         <h3 className="text-md font-medium mb-2 mt-4">Pruning Old Cache Entries</h3>
         
         <div className="bg-muted rounded-md p-4 my-4 font-mono text-sm">
           commitstudio cache:prune
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
       </DocSection>
       
       <DocSection title="When to Disable Caching">
@@ -134,7 +131,6 @@ export default function CachingPage() {
           { href: "/docs/filtering-commits", label: "Filtering Commits" },
         ]}
       />
-      <DocPrevNext prev={prev} next={next} />
-    </div>
+      </div>
   )
 } 

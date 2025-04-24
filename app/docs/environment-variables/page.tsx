@@ -69,8 +69,7 @@ export default function EnvironmentVariablesPage() {
               </tr>
             </tbody>
           </table>
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
       </DocSection>
       
       <DocSection title="Setting Environment Variables">
@@ -82,22 +81,19 @@ export default function EnvironmentVariablesPage() {
         <div className="bg-muted rounded-md p-4 my-2 font-mono text-sm">
           export GITHUB_TOKEN=your_token_here<br />
           export OPENAI_API_KEY=your_key_here
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
         
         <h3 className="text-md font-medium mb-2 mt-4">Command Prompt (Windows)</h3>
         <div className="bg-muted rounded-md p-4 my-2 font-mono text-sm">
           set GITHUB_TOKEN=your_token_here<br />
           set OPENAI_API_KEY=your_key_here
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
         
         <h3 className="text-md font-medium mb-2 mt-4">PowerShell (Windows)</h3>
         <div className="bg-muted rounded-md p-4 my-2 font-mono text-sm">
           $env:GITHUB_TOKEN = "your_token_here"<br />
           $env:OPENAI_API_KEY = "your_key_here"
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
       </DocSection>
       
       <DocSection title="Using with dotenv">
@@ -109,8 +105,7 @@ export default function EnvironmentVariablesPage() {
           # .env file<br />
           GITHUB_TOKEN=your_token_here<br />
           OPENAI_API_KEY=your_key_here
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
         
         <DocParagraph>
           Then run CommitStudio using dotenv:
@@ -118,8 +113,7 @@ export default function EnvironmentVariablesPage() {
         
         <div className="bg-muted rounded-md p-4 my-4 font-mono text-sm">
           npx dotenv -- commitstudio
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
       </DocSection>
       
       <DocSection title="In CI/CD Environments">
@@ -163,8 +157,7 @@ jobs:
         env:
           GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: \${{ secrets.OPENAI_API_KEY }}`}
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
       </DocSection>
       
       <NextSteps
@@ -174,7 +167,6 @@ jobs:
           { href: "/docs/using-with-cicd", label: "CI/CD Integration" },
         ]}
       />
-      <DocPrevNext prev={prev} next={next} />
-    </div>
+      </div>
   )
 } 

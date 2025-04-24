@@ -20,6 +20,47 @@ export default function ConfigurationOptionsPage() {
         </DocParagraph>
       </DocSection>
       
+      <DocSection title="Configuration Mode">
+        <DocParagraph>
+          Configuration mode allows you to view and update CommitStudio settings, particularly AI-related settings like the model and token limits.
+        </DocParagraph>
+        
+        <pre className="bg-muted rounded-md p-4 overflow-x-auto text-sm my-4">
+          {`commitstudio config [options]`}
+        </pre>
+        
+        <DocParagraph>
+          <strong>Configuration Options:</strong>
+        </DocParagraph>
+        
+        <ul className="list-disc pl-6 space-y-1 mb-4">
+          <li><code className="bg-muted text-muted-foreground px-1 py-0.5 rounded text-sm">--view</code>: View current configuration settings</li>
+          <li><code className="bg-muted text-muted-foreground px-1 py-0.5 rounded text-sm">--model &lt;model&gt;</code>: Set AI model to use for analysis</li>
+          <li><code className="bg-muted text-muted-foreground px-1 py-0.5 rounded text-sm">--max-tokens &lt;number&gt;</code>: Set maximum tokens for API requests</li>
+        </ul>
+        
+        <DocParagraph>
+          <strong>Configuration Examples:</strong>
+        </DocParagraph>
+        
+        <pre className="bg-muted rounded-md p-4 overflow-x-auto text-sm my-4">
+          {`# View current configuration
+commitstudio config --view
+
+# Set a specific model
+commitstudio config --model gpt-4o
+
+# Set maximum tokens
+commitstudio config --max-tokens 3000
+
+# Update multiple settings at once
+commitstudio config --model gpt-4.1-mini --max-tokens 2500
+
+# Run interactive configuration
+commitstudio config`}
+        </pre>
+      </DocSection>
+      
       <DocSection title="Configuration File">
         <DocParagraph>
           CommitStudio uses a configuration file named <code className="bg-muted text-muted-foreground px-1 py-0.5 rounded text-sm">.commitstudiorc</code> located in your repository root 
@@ -443,15 +484,16 @@ commitstudio config --max-tokens 4000`}
         </pre>
       </DocSection>
       
-      <NextSteps
-        links={[
-          { href: "/docs/environment-variables", label: "Environment Variables" },
-          { href: "/docs/command-line-reference", label: "Command Line Reference" },
-          { href: "/docs/cache-management", label: "Cache Management" },
-        ]}
-      />
-      
-      <DocPrevNext prev={prev} next={next} />
+      <div className="mt-12 pt-6 border-t border-border">
+        <NextSteps
+          links={[
+            { href: "/docs/environment-variables", label: "Environment Variables" },
+            { href: "/docs/command-line-reference", label: "Command Line Reference" },
+            { href: "/docs/cache-management", label: "Cache Management" },
+          ]}
+        />
+        
+         </div>
     </div>
   )
 } 

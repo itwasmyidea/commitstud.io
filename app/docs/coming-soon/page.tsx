@@ -49,7 +49,6 @@ export default function ComingSoonPage() {
         ]}
       />
       
-      <DocPrevNext prev={prev} next={next} />
-    </div>
+      </div>
   )
 } 

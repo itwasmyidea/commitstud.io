@@ -50,7 +50,6 @@ export default function YoloModePage() {
         
         <div className="bg-muted rounded-md p-4 my-4 font-mono text-sm">
           commitstudio --yolo
-          <DocPrevNext prev={prev} next={next} />
         </div>
         
         <DocParagraph>
@@ -75,7 +74,6 @@ export default function YoloModePage() {
           <div className="border p-4 rounded-md">
             <p className="font-medium text-foreground mb-2">Original commit message:</p>
             <p className="bg-muted p-3 rounded-md font-mono text-sm">fix login bug</p>
-            <DocPrevNext prev={prev} next={next} />
           </div>
           <div className="border border-green-500/20 p-4 rounded-md bg-green-500/5">
             <p className="font-medium text-foreground mb-2">AI-rewritten message:</p>
@@ -88,11 +86,8 @@ export default function YoloModePage() {
               - Fixed incorrect error messages displayed to users
               
               This addresses issue #123 reported by the QA team.
-              <DocPrevNext prev={prev} next={next} />
             </div>
-            <DocPrevNext prev={prev} next={next} />
           </div>
-          <DocPrevNext prev={prev} next={next} />
         </div>
       </DocSection>
       
@@ -124,14 +119,15 @@ export default function YoloModePage() {
         />
       </DocSection>
       
-      <NextSteps
-        links={[
-          { href: "/docs/standard-mode", label: "Standard Mode" },
-          { href: "/docs/configuration-options", label: "Configuration Options" },
-          { href: "/docs/git-operation-errors", label: "Git Operation Errors" },
-        ]}
-      />
-      <DocPrevNext prev={prev} next={next} />
+      <div className="mt-12 pt-6 border-t border-border">
+        <NextSteps
+          links={[
+            { href: "/docs/standard-mode", label: "Standard Mode" },
+            { href: "/docs/configuration-options", label: "Configuration Options" },
+            { href: "/docs/git-operation-errors", label: "Git Operation Errors" },
+          ]}
+        />
+         </div>
     </div>
   )
 } 

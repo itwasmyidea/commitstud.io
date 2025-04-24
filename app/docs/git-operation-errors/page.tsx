@@ -276,7 +276,6 @@ fatal: index-pack failed`}
         ]}
       />
       
-      <DocPrevNext prev={prev} next={next} />
-    </div>
+      </div>
   )
 } 

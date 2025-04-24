@@ -45,7 +45,6 @@ export default function StandardModePage() {
         
         <div className="bg-muted rounded-md p-4 my-4 font-mono text-sm">
           commitstudio
-          <DocPrevNext prev={prev} next={next} />
         </div>
         
         <DocParagraph>
@@ -90,7 +89,6 @@ export default function StandardModePage() {
         
         <div className="bg-muted rounded-md p-4 my-4 font-mono text-sm">
           commitstudio --post-comments
-          <DocPrevNext prev={prev} next={next} />
         </div>
         
         <DocParagraph>
@@ -99,14 +97,15 @@ export default function StandardModePage() {
         </DocParagraph>
       </DocSection>
       
-      <NextSteps
-        links={[
-          { href: "/docs/yolo-mode", label: "YOLO Mode" },
-          { href: "/docs/configuration-options", label: "Configuration Options" },
-          { href: "/docs/filtering-commits", label: "Filtering Commits" },
-        ]}
-      />
-      <DocPrevNext prev={prev} next={next} />
+      <div className="mt-12 pt-6 border-t border-border">
+        <NextSteps
+          links={[
+            { href: "/docs/yolo-mode", label: "YOLO Mode" },
+            { href: "/docs/configuration-options", label: "Configuration Options" },
+            { href: "/docs/filtering-commits", label: "Filtering Commits" },
+          ]}
+        />
+         </div>
     </div>
   )
 } 

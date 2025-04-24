@@ -67,7 +67,6 @@ export default function PrerequisitesPage() {
         ]}
       />
       
-      <DocPrevNext prev={prev} next={next} />
-    </div>
+      </div>
   )
 } 

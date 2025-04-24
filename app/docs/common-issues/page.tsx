@@ -33,8 +33,7 @@ export default function CommonIssuesPage() {
               <>Run <code className="bg-muted px-1 py-0.5 rounded text-sm">commitstudio reset</code> and reconfigure with a new token</>,
             ]}
           />
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
         
         <h3 className="text-md font-medium mb-2 mt-4">OpenAI API Errors</h3>
         
@@ -48,8 +47,7 @@ export default function CommonIssuesPage() {
               <>Try setting a different model using <code className="bg-muted px-1 py-0.5 rounded text-sm">COMMITSTUDIO_MODEL</code> environment variable</>,
             ]}
           />
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
       </DocSection>
       
       <DocSection title="Repository Issues">
@@ -64,8 +62,7 @@ export default function CommonIssuesPage() {
               <>Use <code className="bg-muted px-1 py-0.5 rounded text-sm">--path</code> to explicitly specify your repository path</>,
             ]}
           />
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
         
         <h3 className="text-md font-medium mb-2 mt-4">GitHub Repository Connection Issues</h3>
         
@@ -79,8 +76,7 @@ export default function CommonIssuesPage() {
               <>For private repositories, confirm your token has the necessary permissions</>,
             ]}
           />
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
       </DocSection>
       
       <DocSection title="Analysis Issues">
@@ -96,8 +92,7 @@ export default function CommonIssuesPage() {
               <>Verify that the OpenAI model is responding correctly</>,
             ]}
           />
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
         
         <h3 className="text-md font-medium mb-2 mt-4">Rate Limiting Issues</h3>
         
@@ -111,8 +106,7 @@ export default function CommonIssuesPage() {
               <>Enable caching with <code className="bg-muted px-1 py-0.5 rounded text-sm">COMMITSTUDIO_DISABLE_CACHE=false</code></>,
             ]}
           />
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
       </DocSection>
       
       <DocSection title="Installation and Update Issues">
@@ -128,8 +122,7 @@ export default function CommonIssuesPage() {
               <>Clear npm cache with <code className="bg-muted px-1 py-0.5 rounded text-sm">npm cache clean --force</code></>,
             ]}
           />
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
         
         <h3 className="text-md font-medium mb-2 mt-4">Update Issues</h3>
         
@@ -142,8 +135,7 @@ export default function CommonIssuesPage() {
               <>Check if there are any permission issues in your npm directory</>,
             ]}
           />
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
       </DocSection>
       
       <DocSection title="Getting Additional Help">
@@ -168,7 +160,6 @@ export default function CommonIssuesPage() {
           { href: "/docs/nodejs-deprecation-warnings", label: "Node.js Deprecation Warnings" },
         ]}
       />
-      <DocPrevNext prev={prev} next={next} />
-    </div>
+      </div>
   )
 } 

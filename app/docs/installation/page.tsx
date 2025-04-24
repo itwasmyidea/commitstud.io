@@ -52,7 +52,6 @@ export default function InstallationPage() {
         ]}
       />
       
-      <DocPrevNext prev={prev} next={next} />
-    </div>
+      </div>
   )
 } 

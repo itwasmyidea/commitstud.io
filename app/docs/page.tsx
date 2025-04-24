@@ -85,7 +85,6 @@ export default function DocsPage() {
         </DocParagraph>
       </DocSection>
       
-      <DocPrevNext prev={prev} next={next} />
-    </div>
+      </div>
   )
 } 

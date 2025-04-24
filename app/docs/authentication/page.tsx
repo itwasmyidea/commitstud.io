@@ -87,7 +87,6 @@ export default function AuthenticationPage() {
         ]}
       />
       
-      <DocPrevNext prev={prev} next={next} />
-    </div>
+      </div>
   )
 } 

@@ -78,8 +78,7 @@ export default function FilteringCommitsPage() {
               </tr>
             </tbody>
           </table>
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
       </DocSection>
       
       <DocSection title="Combining Filters">
@@ -89,8 +88,7 @@ export default function FilteringCommitsPage() {
         
         <div className="bg-muted rounded-md p-4 my-4 font-mono text-sm">
           commitstudio --branch main --days 7 --author johndoe
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
         
         <DocParagraph>
           This command would analyze commits from the 'main' branch made by 'johndoe' in the last 7 days.
@@ -118,29 +116,25 @@ export default function FilteringCommitsPage() {
         <h3 className="text-md font-medium mb-2 mt-4">Analyze Recent Commits</h3>
         <div className="bg-muted rounded-md p-4 my-2 font-mono text-sm">
           commitstudio --days 3
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
         <p className="text-sm text-muted-foreground mt-1 mb-4">Analyzes commits from the last 3 days</p>
         
         <h3 className="text-md font-medium mb-2 mt-4">Analyze a Pull Request</h3>
         <div className="bg-muted rounded-md p-4 my-2 font-mono text-sm">
           commitstudio --pr 123
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
         <p className="text-sm text-muted-foreground mt-1 mb-4">Analyzes all commits in pull request #123</p>
         
         <h3 className="text-md font-medium mb-2 mt-4">Analyze a Feature Branch</h3>
         <div className="bg-muted rounded-md p-4 my-2 font-mono text-sm">
           commitstudio --branch feature/new-ui --limit 10
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
         <p className="text-sm text-muted-foreground mt-1 mb-4">Analyzes the 10 most recent commits on the feature/new-ui branch</p>
         
         <h3 className="text-md font-medium mb-2 mt-4">Analyze a Date Range</h3>
         <div className="bg-muted rounded-md p-4 my-2 font-mono text-sm">
           commitstudio --since 2023-06-01 --until 2023-06-30
-          <DocPrevNext prev={prev} next={next} />
-        </div>
+          </div>
         <p className="text-sm text-muted-foreground mt-1 mb-4">Analyzes commits made during June 2023</p>
       </DocSection>
       
@@ -151,7 +145,6 @@ export default function FilteringCommitsPage() {
           { href: "/docs/command-line-reference", label: "Command Line Reference" },
         ]}
       />
-      <DocPrevNext prev={prev} next={next} />
-    </div>
+      </div>
   )
 } 

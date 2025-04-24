@@ -172,7 +172,6 @@ X-RateLimit-Reset: 1609459200`}
         ]}
       />
       
-      <DocPrevNext prev={prev} next={next} />
-    </div>
+      </div>
   )
 } 
