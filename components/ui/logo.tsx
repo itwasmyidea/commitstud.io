@@ -40,7 +40,7 @@ const pathVariants = {
 const Logo = () => {
   return (
     <Link href="/" className="flex items-center gap-1.5">
-      <div className="flex flex-col">
+      <div className="flex flex-col relative">
         <div className="flex items-center">
           <motion.div 
             className="relative w-8 h-8 flex items-center justify-center"
@@ -105,7 +105,7 @@ const Logo = () => {
           </motion.span>
         </div>
         <motion.div 
-          className="text-right text-xs text-zinc-400 mt-0"
+          className="text-right text-[10px] text-zinc-400 absolute -mt-1 right-0 -bottom-2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.8 }}

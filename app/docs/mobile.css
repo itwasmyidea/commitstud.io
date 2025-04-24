@@ -1,0 +1,80 @@
+/* Mobile-friendly styles for documentation */
+
+/* Responsive tables */
+@media (max-width: 640px) {
+  table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  th, td {
+    min-width: 120px;
+    white-space: nowrap;
+  }
+}
+
+/* Code blocks */
+pre {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  white-space: pre;
+}
+
+code {
+  word-break: break-word;
+}
+
+/* Mobile typography adjustments */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 1.75rem !important;
+  }
+  
+  h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  h3 {
+    font-size: 1.25rem !important;
+  }
+  
+  .prose {
+    font-size: 0.95rem;
+  }
+  
+  pre {
+    font-size: 0.85rem !important;
+    padding: 0.75rem !important;
+  }
+}
+
+/* Improve spacing on small screens */
+@media (max-width: 640px) {
+  .prose p, .prose ul, .prose ol {
+    margin-bottom: 1rem;
+  }
+  
+  .prose > * + * {
+    margin-top: 1rem;
+  }
+}
+
+/* Ensure images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive navigation fixes */
+.DocPrevNext-mobile {
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Prevent text overflow in links */
+a {
+  word-break: break-word;
+} 

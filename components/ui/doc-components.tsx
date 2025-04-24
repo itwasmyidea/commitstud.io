@@ -8,7 +8,7 @@ interface DocHeadingProps {
 
 export function DocHeading({ children, id }: DocHeadingProps) {
   return (
-    <h1 id={id} className="text-3xl font-bold tracking-tight text-foreground mb-6">
+    <h1 id={id} className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground mb-4 sm:mb-6">
       {children}
     </h1>
   )
@@ -98,19 +98,19 @@ interface DocPrevNextProps {
 
 export function DocPrevNext({ prev, next }: DocPrevNextProps) {
   return (
-    <div className="flex flex-col sm:flex-row justify-between items-stretch gap-4 mt-12 border-t pt-8">
+    <div className="flex flex-col sm:flex-row justify-between items-stretch gap-4 mt-8">
       {prev ? (
         <Link 
           href={prev.href} 
-          className="group flex flex-col items-start p-4 flex-1 border rounded-lg hover:border-primary transition-colors hover:bg-primary/5"
+          className="group flex flex-col items-start p-3 sm:p-4 flex-1 border rounded-lg hover:border-primary transition-colors hover:bg-primary/5"
         >
-          <span className="text-sm text-muted-foreground flex items-center mb-1">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mr-1">
+          <span className="text-xs sm:text-sm text-muted-foreground flex items-center mb-1">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="mr-1">
               <path d="M19 12H5M12 19l-7-7 7-7" />
             </svg>
             Previous
           </span>
-          <span className="font-medium group-hover:text-primary transition-colors">{prev.label}</span>
+          <span className="font-medium text-sm sm:text-base group-hover:text-primary transition-colors line-clamp-1">{prev.label}</span>
         </Link>
       ) : (
         <div className="flex-1"></div>
@@ -118,15 +118,15 @@ export function DocPrevNext({ prev, next }: DocPrevNextProps) {
       {next ? (
         <Link 
           href={next.href} 
-          className="group flex flex-col items-end text-right p-4 flex-1 border rounded-lg hover:border-primary transition-colors hover:bg-primary/5"
+          className="group flex flex-col items-end text-right p-3 sm:p-4 flex-1 border rounded-lg hover:border-primary transition-colors hover:bg-primary/5"
         >
-          <span className="text-sm text-muted-foreground flex items-center justify-end mb-1">
+          <span className="text-xs sm:text-sm text-muted-foreground flex items-center justify-end mb-1">
             Next
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="ml-1">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="ml-1">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </span>
-          <span className="font-medium group-hover:text-primary transition-colors">{next.label}</span>
+          <span className="font-medium text-sm sm:text-base group-hover:text-primary transition-colors line-clamp-1">{next.label}</span>
         </Link>
       ) : (
         <div className="flex-1"></div>
