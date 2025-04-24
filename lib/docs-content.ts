@@ -10,7 +10,15 @@ export const technicalSpecs = {
     defaultModel: "gpt-4.1-mini", // Current default model used
     temperature: 0.3, // Default temperature for standard mode
     yoloTemperature: 0.7, // Temperature for YOLO mode
-    maxTokens: 12345, // Max tokens for API calls
+    maxTokens: 2000, // Max tokens for API calls
+    availableModels: [
+      "gpt-4o",
+      "gpt-4.1",
+      "gpt-4.1-mini",
+      "gpt-4.1-nano",
+      "o4-mini",
+      "o3-mini",
+    ],
   },
   
   // Node.js requirements
@@ -34,6 +42,34 @@ export const technicalSpecs = {
   // Command line parameters
   cli: {
     defaultCommitsYolo: 5, // Default number of commits analyzed in YOLO mode
+    defaultCommitCount: 10, // Default number of commits to analyze if not specified
+    cacheDuration: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
+    maxFileSize: 1024 * 1024, // 1MB in bytes
+  },
+  
+  // File analysis
+  analysis: {
+    ignorePaths: [
+      "node_modules/**",
+      "dist/**",
+      "build/**",
+      "*.lock",
+      "package-lock.json",
+      "yarn.lock",
+    ],
+    analyzableExtensions: [
+      ".js", ".jsx", ".ts", ".tsx", ".py", ".rb", ".java", ".go", 
+      ".c", ".cpp", ".cs", ".php", ".html", ".css", ".scss", 
+      ".md", ".json", ".yml", ".yaml",
+    ],
+    defaultPromptTemplate: "Review this code diff and provide feedback on: 1) Potential bugs or errors, 2) Code style and best practices, 3) Performance considerations, 4) Security issues.",
+  },
+  
+  // GitHub settings
+  github: {
+    clientId: "Ov23liIA45phTP52foql",
+    apiUrl: "https://api.github.com",
+    graphqlUrl: "https://api.github.com/graphql",
   }
 };
 
@@ -101,6 +137,12 @@ export const docsContent = {
       { flag: "--serious", description: "Generate more professional commit messages (no emojis)" },
       { flag: "--dry-run", description: "Preview changes without applying them" },
       { flag: "--verbose", description: "Show detailed logs" },
+    ],
+    configMode: [
+      { flag: "config", description: "Configure CommitStudio settings" },
+      { flag: "config --view", description: "View current configuration" },
+      { flag: "config --model <model>", description: "Set AI model to use" },
+      { flag: "config --max-tokens <number>", description: "Set maximum tokens for API requests" },
     ],
   },
 }; 

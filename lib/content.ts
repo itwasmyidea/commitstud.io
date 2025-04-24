@@ -179,7 +179,7 @@ export const resourceLinks = [
   },
   { 
     label: "Changelog", 
-    url: "https://github.com/itwasmyidea/blob/main/CHANGELOG.md",
+    url: "https://github.com/itwasmyidea/commitstudio/blob/main/CHANGELOG.md",
     icon: "ExternalLink" 
   }
 ];
@@ -317,7 +317,7 @@ export const documentationItems = [
   },
   {
     title: "API Reference",
-    description: "Detailed documentation of CommitStudio's API for advanced integration with your development workflow.",
+    description: "Detailed documentation of CommitStudio's API for advanced integration with your development.",
     link: "/docs/api-reference",
     external: false,
     icon: "Code"
@@ -346,7 +346,7 @@ export const documentationItems = [
   {
     title: "Changelog",
     description: "Stay up to date with the latest features, improvements, and bug fixes in each release.",
-    link: "https://github.com/itwasmyidea/commitstud.io/blob/main/CHANGELOG.md",
+    link: "https://github.com/itwasmyidea/commitstudio/blob/main/CHANGELOG.md",
     external: true,
     icon: "ExternalLink"
   }
