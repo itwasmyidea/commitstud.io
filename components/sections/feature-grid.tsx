@@ -30,12 +30,7 @@ export default function FeatureGrid() {
 function FeatureGridItem({ content, index }: FeatureItem & { index: number }) {
   const ref = useRef<HTMLDivElement>(null)
   const [isMobile, setIsMobile] = useState(false)
-  
-  // Use inView with a threshold to determine when the element is centered in the viewport
-  const isInView = useInView(ref, { 
-    amount: 0.8, // How much of the element needs to be in view
-    once: false // Make it trigger every time it enters/leaves the viewport
-  })
+  const [isHovered, setIsHovered] = useState(false)
   
   // For scroll-based highlighting on mobile
   const { scrollYProgress } = useScroll({
@@ -71,12 +66,14 @@ function FeatureGridItem({ content, index }: FeatureItem & { index: number }) {
     <motion.div
       ref={ref}
       className="group relative px-5 md:px-8 py-10 cursor-pointer"
+      onMouseEnter={() => !isMobile && setIsHovered(true)}
+      onMouseLeave={() => !isMobile && setIsHovered(false)}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       style={{
-        opacity: isMobile ? cardOpacity : isInView ? 1 : 0.4
+        opacity: isMobile ? cardOpacity : isHovered ? 1 : 0.4
       }}
     >
       <p className="text-lg md:text-xl font-medium tracking-tight leading-normal transition-all duration-300">

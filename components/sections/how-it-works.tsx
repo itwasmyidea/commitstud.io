@@ -93,94 +93,30 @@ function StepCard({ step, index, isLast }: { step: Step; index: number; isLast: 
   const ref = useRef<HTMLDivElement>(null)
   const cardRef = useRef<HTMLDivElement>(null)
   const isMobile = useIsMobile()
-  
-  // Using different view settings for mobile vs desktop
-  const viewportMargin = isMobile ? "-10%" : "-100px"
-  const viewportAmount = isMobile ? 0.6 : 0.1 // Requires 60% of element to be visible on mobile
-  
-  const isInView = useInView(ref, { 
-    once: false, // Allow re-entering view on mobile
-    margin: viewportMargin,
-    amount: viewportAmount
-  })
-  
-  const controls = useAnimationControls()
   const [hovered, setHovered] = useState(false)
-  
-  // Use scroll-based animation for mobile
-  const { scrollYProgress } = useScroll({
-    target: cardRef,
-    offset: ["start end", "end start"]
-  })
-  
-  // Transform scroll progress into opacity
-  const cardOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.3, 0.5, 0.7, 1],
-    [0.4, 0.7, 1, 0.7, 0.4]
-  )
-  
-  useEffect(() => {
-    if (isInView) {
-      controls.start("visible")
-    } else if (!isMobile) {
-      // Only reset on desktop
-      controls.start("hidden")
-    }
-  }, [isInView, controls, isMobile])
-  
   const isEven = index % 2 === 0
   
   return (
     <div className="relative" ref={ref}>
       <motion.div
         ref={cardRef}
-        initial="hidden"
-        animate={controls}
-        style={{
-          opacity: isMobile ? cardOpacity : undefined
-        }}
-        variants={{
-          hidden: { 
-            opacity: isMobile ? undefined : 0.4,
-            x: isEven ? -10 : 10,
-            y: isMobile ? 10 : 0
-          },
-          visible: { 
-            opacity: isMobile ? undefined : 1, 
-            x: 0,
-            y: 0,
-            transition: {
-              duration: 0.5,
-              delay: index * 0.1,
-              ease: "easeOut"
-            }
-          }
-        }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
         whileHover={{ y: -3 }}
         onHoverStart={() => setHovered(true)}
         onHoverEnd={() => setHovered(false)}
-        className={`relative md:w-[calc(50%-1.5rem)] p-6 rounded-[0.75rem] border border-zinc-800 bg-zinc-900/80 backdrop-blur-sm shadow-xl z-10 transition-all duration-300 ${isEven ? 'md:mr-auto' : 'md:ml-auto'}`}
+        className={`relative md:w-[calc(50%-1.5rem)] p-6 rounded-[0.75rem] border border-zinc-800 bg-zinc-900/80 backdrop-blur-sm shadow-xl z-10 ${isEven ? 'md:mr-auto' : 'md:ml-auto'}`}
       >
         {/* Center connector line */}
-        <motion.div 
+        <div 
           className={`absolute hidden md:block h-[1px] bg-gradient-to-r ${isEven ? ' from-zinc-800 to-zinc-800/0' : ' from-zinc-800/0 to-zinc-800'} z-20`}
-          initial={{ width: 0 }}
-          animate={controls}
-          variants={{
-            hidden: { width: 0 },
-            visible: { 
-              width: 24, 
-              transition: { 
-                duration: 0.3, 
-                delay: index * 0.1 + 0.3 
-              }
-            }
-          }}
           style={{ 
             top: '50%',
             left: isEven ? 'auto' : '-24px',
-            right: isEven ? '-24px' : 'auto'
+            right: isEven ? '-24px' : 'auto',
+            width: '24px'
           }}
         />
         
@@ -196,49 +132,27 @@ function StepCard({ step, index, isLast }: { step: Step; index: number; isLast: 
             <p className="text-zinc-400 text-sm mb-3">{step.description}</p>
             
             {step.code && (
-              <div className="overflow-hidden rounded-md bg-zinc-950 border border-zinc-800 transition-all duration-300">
-                <motion.div 
+              <div className="overflow-hidden rounded-md bg-zinc-950 border border-zinc-800">
+                <div 
                   className="p-3 font-mono text-xs text-blue-400 overflow-x-auto"
-                  animate={{ opacity: hovered ? 1 : 0.8 }}
-                  transition={{ duration: 0.2 }}
                 >
                   {step.code}
-                </motion.div>
+                </div>
               </div>
             )}
             
             {step.details && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ 
-                  opacity: isInView ? 1 : 0, 
-                  height: isInView ? "auto" : 0
-                }}
-                transition={{ 
-                  opacity: { duration: 0.4, delay: 0.2 },
-                  height: { duration: 0.3, delay: 0.1 }
-                }}
-                className="mt-3 space-y-1 overflow-hidden"
-              >
+              <div className="mt-3 space-y-1">
                 {step.details.map((detail, i) => (
-                  <motion.div 
+                  <div 
                     key={i}
-                    initial={{ opacity: 0, x: 5 }}
-                    animate={{ 
-                      opacity: isInView ? 1 : 0, 
-                      x: isInView ? 0 : 5 
-                    }}
-                    transition={{ 
-                      duration: 0.3, 
-                      delay: 0.2 + (i * 0.1)
-                    }}
                     className="flex items-start gap-2 text-xs"
                   >
                     <div className="text-blue-400 mt-0.5">•</div>
                     <div className="text-zinc-400">{detail}</div>
-                  </motion.div>
+                  </div>
                 ))}
-              </motion.div>
+              </div>
             )}
           </div>
         </div>

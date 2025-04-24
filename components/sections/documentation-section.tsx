@@ -13,9 +13,13 @@ interface DocCardProps {
   description: string;
   link?: string;
   external?: boolean;
+  isHovered: boolean;
+  onHover: (hovered: boolean) => void;
 }
 
 export default function DocumentationSection() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  
   // Map icon strings to actual components
   const getIconComponent = (iconName: string) => {
     switch(iconName) {
@@ -54,6 +58,10 @@ export default function DocumentationSection() {
               description={item.description}
               link={item.link}
               external={item.external}
+              isHovered={hoveredIndex !== null && hoveredIndex !== index}
+              onHover={(hovered) => {
+                setHoveredIndex(hovered ? index : null);
+              }}
             />
           ))}
         </div>
@@ -62,7 +70,7 @@ export default function DocumentationSection() {
   )
 }
 
-function DocCard({ icon, title, description, link, external }: DocCardProps) {
+function DocCard({ icon, title, description, link, external, isHovered, onHover }: DocCardProps) {
   const CardWrapper = ({ children }: { children: React.ReactNode }) => {
     if (link) {
       return (
@@ -70,13 +78,18 @@ function DocCard({ icon, title, description, link, external }: DocCardProps) {
           href={link} 
           target={external ? "_blank" : undefined}
           rel={external ? "noopener noreferrer" : undefined}
-          className="block h-full"
+          className="block h-full cursor-pointer"
+          onMouseEnter={() => onHover(true)}
+          onMouseLeave={() => onHover(false)}
         >
           {children}
         </Link>
       );
     }
-    return <>{children}</>;
+    return <div 
+      onMouseEnter={() => onHover(true)}
+      onMouseLeave={() => onHover(false)}
+    >{children}</div>;
   };
 
   return (
@@ -86,17 +99,18 @@ function DocCard({ icon, title, description, link, external }: DocCardProps) {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true, margin: "-100px" }}
-        className="bg-zinc-900 rounded-[0.75rem] p-8 shadow-lg border border-zinc-800 transition-all hover:shadow-brand-light/5 hover:border-zinc-700 h-full"
-        whileHover={{ y: -5, borderColor: 'rgba(96, 165, 250, 0.3)' }}
+        className={`bg-zinc-900 hover:cursor-pointer rounded-[0.75rem] group p-8 shadow-lg border border-zinc-800 h-full hover:bg-zinc-800 transition-all duration-300 ${isHovered ? 'opacity-40' : 'opacity-100'}`}
       >
-        <div className="w-12 h-12 bg-zinc-800 rounded-full flex items-center justify-center mb-6">{icon}</div>
+        <div className="w-12 h-12 bg-zinc-800 text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300 rounded-full flex items-center justify-center mb-6">{icon}</div>
         <h3 className="text-lg font-medium mb-3 text-zinc-100">{title}</h3>
-        <p className="text-zinc-400">{description}</p>
+        <p className="text-zinc-400 text-sm">{description}</p>
         
         {link && external && (
-          <div className="mt-4 flex items-center text-sm text-brand-light">
-            <span>View documentation</span>
-            <ExternalLink className="ml-1 h-3 w-3" />
+          <div className="mt-4 justify-end flex gap-1  items-center text-xs text-brand-light">
+            <div className="flex gap-1 items-center border-b group-hover:pb-2 group-hover:border-b-2 group-hover:px-2 group-hover:-mt-1 transition-all duration-300 border-white pb-1">
+              <span>External Link</span>
+              <ExternalLink className="ml-1 mb-0.5 h-3 w-3" />
+            </div>
           </div>
         )}
       </motion.div>
