@@ -105,7 +105,8 @@ export default function StandardModePage() {
             { href: "/docs/filtering-commits", label: "Filtering Commits" },
           ]}
         />
-         </div>
+        <DocPrevNext prev={prev} next={next} />
+      </div>
     </div>
   )
 } 

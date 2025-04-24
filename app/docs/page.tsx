@@ -85,6 +85,10 @@ export default function DocsPage() {
         </DocParagraph>
       </DocSection>
       
+      
+      <div className="mt-12 pt-6 border-t border-border">
+        <DocPrevNext prev={prev} next={next} />
       </div>
+</div>
   )
 } 

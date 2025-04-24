@@ -492,8 +492,8 @@ commitstudio config --max-tokens 4000`}
             { href: "/docs/cache-management", label: "Cache Management" },
           ]}
         />
-        
-         </div>
+        <DocPrevNext prev={prev} next={next} />
+      </div>
     </div>
   )
 } 

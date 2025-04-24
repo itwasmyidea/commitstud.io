@@ -127,7 +127,8 @@ export default function YoloModePage() {
             { href: "/docs/git-operation-errors", label: "Git Operation Errors" },
           ]}
         />
-         </div>
+        <DocPrevNext prev={prev} next={next} />
+      </div>
     </div>
   )
 } 
