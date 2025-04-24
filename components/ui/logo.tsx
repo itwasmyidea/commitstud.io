@@ -39,7 +39,7 @@ const pathVariants = {
 
 const Logo = () => {
   return (
-    <Link href="/" className="flex items-center gap-2">
+    <Link href="/" className="flex items-center gap-1.5">
       <motion.div 
         className="relative w-8 h-8 flex items-center justify-center"
         initial="hidden"
@@ -47,8 +47,8 @@ const Logo = () => {
         variants={svgVariants}
       >
         <motion.svg 
-          width="28" 
-          height="28" 
+          width="25" 
+          height="25" 
           viewBox="0 0 2351.15 2278.29" 
           fill="none" 
           xmlns="http://www.w3.org/2000/svg" 
@@ -93,21 +93,14 @@ const Logo = () => {
         transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
         <motion.span 
-          className="text-transparent mr-1 bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 font-semibold"
+          className="text-transparent mr-0.5 bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 font-semibold"
         >
           Commit
         </motion.span> 
         <motion.span>
           Studio
         </motion.span>
-        <motion.span
-          className="ml-2 text-xs text-zinc-400 font-normal"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
-        >
-          by SofTx
-        </motion.span>
+      
       </motion.span>
     </Link>
   )

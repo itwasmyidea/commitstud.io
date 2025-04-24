@@ -165,6 +165,16 @@ export const footerLinks = [
   { label: "License", type: "license" },
 ];
 
+// Footer copyright text
+export const footerCopyright = {
+  prefix: "CommitStudio – ",
+  company: {
+    name: "SofTx Innovations Inc.",
+    url: "https://softx.ca"
+  },
+  suffix: "Proudly Developed by"
+};
+
 // Resource links for footer
 export const resourceLinks = [
   { 
@@ -188,12 +198,12 @@ export const resourceLinks = [
 export const companyLinks = [
   { 
     label: "About", 
-    url: "#",
+    url: "/docs",
     icon: null 
   },
   { 
-    label: "Blog", 
-    url: "#",
+    label: "SofTx Innovations", 
+    url: "https://softx.ca",
     icon: null 
   },
   { 
