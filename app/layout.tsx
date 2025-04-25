@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     siteName: 'CommitStudio',
     images: [
       {
-        url: 'meta/og.png',
+        url: '/meta/og.png',
         width: 1200,
         height: 630,
         alt: siteMetadata.title,
@@ -56,19 +56,19 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: siteMetadata.title,
     description: siteMetadata.description,
-    creator: '@commitstudio',
-    images: ['meta/og.png'],
+    creator: '@GitCommitStudio',
+    images: ['/meta/og.png'],
   },
   icons: {
     icon: [
       { url: '/favicon.ico' },
-      { url: 'meta/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/meta/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
     ],
     apple: [
-      { url: 'meta/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+      { url: '/meta/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
     other: [
-      { rel: 'mask-icon', url: 'meta/safari-pinned-tab.svg', color: '#3B82F6' },
+      { rel: 'mask-icon', url: '/meta/safari-pinned-tab.svg', color: '#3B82F6' },
     ],
   },
   manifest: '/site.webmanifest',
@@ -95,6 +95,10 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/meta/apple-touch-icon.png" />
+        <meta name="google-site-verification" content="your-verification-code" />
       </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
