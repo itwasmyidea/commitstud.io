@@ -1,60 +1,53 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-// List of available doc pages
-const AVAILABLE_DOCS = [
-  '/docs',
-  '/docs/installation',
-  '/docs/prerequisites',
-  '/docs/authentication',
-  '/docs/quick-start',
-  '/docs/standard-mode',
-  '/docs/yolo-mode',
-  '/docs/environment-variables',
-  '/docs/credentials-management',
-  '/docs/repository-detection',
-  '/docs/caching',
-  '/docs/github-oauth-configuration',
-  '/docs/using-with-cicd',
-  '/docs/filtering-commits',
-  '/docs/cache-management',
-  '/docs/common-issues',
-  '/docs/nodejs-deprecation-warnings',
-  '/docs/github-api-rate-limits',
-  '/docs/git-operation-errors',
-  '/docs/command-line-reference',
-  '/docs/api-reference',
-  '/docs/configuration-options',
-]
-
-// Check if a pathname is under docs but not in the available list
-function isUnavailableDocsPage(pathname: string): boolean {
-  if (!pathname.startsWith('/docs/')) {
-    return false
-  }
-  
-  // These are special paths that should always be allowed
-  if (pathname === '/docs/coming-soon' || pathname === '/docs') {
-    return false
-  }
-  
-  return !AVAILABLE_DOCS.includes(pathname)
+// Define docs redirect map for specific paths
+const DOCS_REDIRECT_MAP: Record<string, string> = {
+  '/docs': 'https://docs.commitstud.io',
+  '/docs/installation': 'https://docs.commitstud.io/docs/1-getting-started/quick-start',
+  '/docs/prerequisites': 'https://docs.commitstud.io/docs/1-getting-started/quick-start',
+  '/docs/authentication': 'https://docs.commitstud.io/docs/1-getting-started/quick-start',
+  '/docs/quick-start': 'https://docs.commitstud.io/docs/1-getting-started/quick-start',
+  '/docs/standard-mode': 'https://docs.commitstud.io/docs/2-usage/standard-mode',
+  '/docs/yolo-mode': 'https://docs.commitstud.io/docs/2-usage/yolo-mode',
+  '/docs/environment-variables': 'https://docs.commitstud.io/docs/3-configuration/options',
+  '/docs/credentials-management': 'https://docs.commitstud.io/docs/3-configuration/options',
+  '/docs/repository-detection': 'https://docs.commitstud.io/docs/3-configuration/options',
+  '/docs/caching': 'https://docs.commitstud.io/docs/3-configuration/options',
+  '/docs/github-oauth-configuration': 'https://docs.commitstud.io/docs/3-configuration/options',
+  '/docs/using-with-cicd': 'https://docs.commitstud.io/docs/4-advanced-usage/cicd',
+  '/docs/filtering-commits': 'https://docs.commitstud.io/docs/4-advanced-usage/filters',
+  '/docs/cache-management': 'https://docs.commitstud.io/docs/4-advanced-usage/cache',
+  '/docs/common-issues': 'https://docs.commitstud.io/docs/6-troubleshooting/common-issues',
+  '/docs/nodejs-deprecation-warnings': 'https://docs.commitstud.io/docs/6-troubleshooting/common-issues',
+  '/docs/github-api-rate-limits': 'https://docs.commitstud.io/docs/6-troubleshooting/common-issues',
+  '/docs/git-operation-errors': 'https://docs.commitstud.io/docs/6-troubleshooting/common-issues',
+  '/docs/command-line-reference': 'https://docs.commitstud.io/docs/5-reference/commands',
+  '/docs/api-reference': 'https://docs.commitstud.io/docs/5-reference/api',
+  '/docs/configuration-options': 'https://docs.commitstud.io/docs/3-configuration/options',
 }
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // Only handle /docs/* routes
-  if (!pathname.startsWith('/docs/')) {
-    return NextResponse.next()
+  // Handle specific doc redirects
+  if (DOCS_REDIRECT_MAP[pathname]) {
+    return NextResponse.redirect(DOCS_REDIRECT_MAP[pathname], { 
+      status: 301,
+      headers: {
+        'Cache-Control': 'public, max-age=31536000, immutable'
+      }
+    })
   }
 
-  // Check if the page exists
-  if (isUnavailableDocsPage(pathname)) {
-    // Redirect to coming soon page
-    const url = request.nextUrl.clone()
-    url.pathname = '/docs/coming-soon'
-    return NextResponse.rewrite(url)
+  // Handle generic /docs/ paths - redirect to the docs site root
+  if (pathname.startsWith('/docs/')) {
+    return NextResponse.redirect('https://docs.commitstud.io', { 
+      status: 301,
+      headers: {
+        'Cache-Control': 'public, max-age=31536000, immutable'
+      }
+    })
   }
 
   return NextResponse.next()

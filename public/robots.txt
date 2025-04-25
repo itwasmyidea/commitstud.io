@@ -1,0 +1,9 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://commitstud.io/sitemap.xml
+
+# Disallow unfinished pages if any exist
+# Disallow: /unfinished-page/ 

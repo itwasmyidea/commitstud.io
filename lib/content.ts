@@ -1,8 +1,8 @@
 // Site metadata
 export const siteMetadata = {
   title: "CommitStudio — AI-Powered Git Commit Reviews",
-  description: "Get AI-powered feedback on every commit directly in your terminal and GitHub pull requests.",
-  keywords: "git, commit, code review, AI, automation, developer tools, code quality, GitHub",
+  description: "Automate your code reviews with CommitStudio. Get instant AI-powered feedback on every commit directly in your terminal and GitHub pull requests. Improve code quality and save developer time.",
+  keywords: "git, commit, code review, AI, automation, developer tools, code quality, GitHub, pull request, commit message, yolo mode, terminal, CLI, static analysis, productivity",
   generator: "commitstudio.com",
   applicationName: "CommitStudio",
   author: { name: "Ali Geramy", url: "https://github.com/aligeramy" },
@@ -12,7 +12,7 @@ export const siteMetadata = {
 
 // Navigation items
 export const navItems = [
-  { label: "Docs", href: "/docs" },
+  { label: "Docs", href: "https://docs.commitstud.io" },
   { label: "Features", id: "feature-grid" },
   { label: "How It Works", id: "how-it-works" },
   { label: "Testimonials", id: "testimonials" },
@@ -198,7 +198,7 @@ export const resourceLinks = [
 export const companyLinks = [
   { 
     label: "About", 
-    url: "/docs",
+    url: "https://docs.commitstud.io",
     icon: null 
   },
   { 
@@ -321,43 +321,43 @@ export const documentationItems = [
   {
     title: "Quick Start Guide",
     description: "Get up and running with CommitStudio in under 5 minutes with our step-by-step quickstart guide.",
-    link: "/docs/quick-start",
-    external: false,
+    link: "https://docs.commitstud.io/docs/1-getting-started/quick-start",
+    external: true,
     icon: "BookOpen"
   },
   {
-    title: "API Reference",
-    description: "Detailed documentation of CommitStudio's API for advanced integration with your development.",
-    link: "/docs/api-reference",
-    external: false,
+    title: "Standard Mode",
+    description: "Learn how to use CommitStudio's standard mode for thorough AI-powered code reviews.",
+    link: "https://docs.commitstud.io/docs/2-usage/standard-mode",
+    external: true,
     icon: "Code"
   },
   {
-    title: "CLI Commands",
-    description: "Comprehensive reference for all available command-line options and configuration settings.",
-    link: "/docs/command-line-reference",
-    external: false,
+    title: "YOLO Mode",
+    description: "Explore YOLO mode for automated commit message improvements and streamlined workflows.",
+    link: "https://docs.commitstud.io/docs/2-usage/yolo-mode",
+    external: true,
     icon: "Terminal"
   },
   {
-    title: "Configuration",
-    description: "Learn how to create a config file to customize CommitStudio's behavior for your specific project needs.",
-    link: "/docs/configuration-options",
-    external: false,
+    title: "Configuration Options",
+    description: "Learn how to customize CommitStudio's behavior for your specific project needs.",
+    link: "https://docs.commitstud.io/docs/3-configuration/options",
+    external: true,
     icon: "FileText"
   },
   {
-    title: "GitHub Integration",
-    description: "Step-by-step guide for setting up CommitStudio with your GitHub repositories and workflow.",
-    link: "/docs/github-oauth-configuration",
-    external: false,
-    icon: "Github"
+    title: "FAQ",
+    description: "Find answers to frequently asked questions about using CommitStudio.",
+    link: "https://docs.commitstud.io/docs/6-troubleshooting/faq",
+    external: true,
+    icon: "HelpCircle"
   },
   {
-    title: "Changelog",
-    description: "Stay up to date with the latest features, improvements, and bug fixes in each release.",
-    link: "https://github.com/itwasmyidea/commitstudio/blob/main/CHANGELOG.md",
+    title: "Common Issues",
+    description: "Solutions for common problems you might encounter when using CommitStudio.",
+    link: "https://docs.commitstud.io/docs/6-troubleshooting/common-issues",
     external: true,
-    icon: "ExternalLink"
+    icon: "AlertCircle"
   }
 ];
