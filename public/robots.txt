@@ -2,8 +2,11 @@
 User-agent: *
 Allow: /
 
+# Host directive to specify canonical domain
+Host: https://commitstud.io
+
 # Sitemap location
-Sitemap: https://commitstud.io/sitemap.xml
+Sitemap: https://commitstud.io/sitemapindex.xml
 
 # Disallow unfinished pages if any exist
 # Disallow: /unfinished-page/ 

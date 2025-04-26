@@ -1,63 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://commitstud.io/</loc>
-    <lastmod>2024-06-01</lastmod>
+    <lastmod>2024-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://commitstud.io/"/>
   </url>
   <url>
     <loc>https://commitstud.io/terms</loc>
-    <lastmod>2024-06-01</lastmod>
+    <lastmod>2024-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://commitstud.io/terms"/>
   </url>
   <url>
     <loc>https://commitstud.io/privacy</loc>
-    <lastmod>2024-06-01</lastmod>
+    <lastmod>2024-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://commitstud.io/privacy"/>
   </url>
   <url>
     <loc>https://commitstud.io/license</loc>
-    <lastmod>2024-06-01</lastmod>
+    <lastmod>2024-04-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://commitstud.io/license"/>
   </url>
   <url>
     <loc>https://docs.commitstud.io/docs/1-getting-started/quick-start</loc>
-    <lastmod>2024-06-01</lastmod>
+    <lastmod>2024-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.commitstud.io/docs/1-getting-started/quick-start"/>
   </url>
   <url>
     <loc>https://docs.commitstud.io/docs/2-usage/standard-mode</loc>
-    <lastmod>2024-06-01</lastmod>
+    <lastmod>2024-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.commitstud.io/docs/2-usage/standard-mode"/>
   </url>
   <url>
     <loc>https://docs.commitstud.io/docs/2-usage/yolo-mode</loc>
-    <lastmod>2024-06-01</lastmod>
+    <lastmod>2024-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.commitstud.io/docs/2-usage/yolo-mode"/>
   </url>
   <url>
     <loc>https://docs.commitstud.io/docs/3-configuration/options</loc>
-    <lastmod>2024-06-01</lastmod>
+    <lastmod>2024-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.commitstud.io/docs/3-configuration/options"/>
   </url>
   <url>
     <loc>https://docs.commitstud.io/docs/6-troubleshooting/faq</loc>
-    <lastmod>2024-06-01</lastmod>
+    <lastmod>2024-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.commitstud.io/docs/6-troubleshooting/faq"/>
   </url>
   <url>
     <loc>https://docs.commitstud.io/docs/6-troubleshooting/common-issues</loc>
-    <lastmod>2024-06-01</lastmod>
+    <lastmod>2024-04-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.commitstud.io/docs/6-troubleshooting/common-issues"/>
   </url>
 </urlset> 

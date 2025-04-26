@@ -1,0 +1,33 @@
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "CommitStudio",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Cross-platform",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "AI-powered Git commit reviews that provide instant feedback on code quality, potential bugs, and style issues directly in your terminal or GitHub PRs.",
+  "softwareVersion": "1.0",
+  "author": {
+    "@type": "Organization",
+    "name": "CommitStudio",
+    "url": "https://commitstud.io"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SofTx Innovations Inc.",
+    "url": "https://softx.ca"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "52"
+  },
+  "downloadUrl": "https://www.npmjs.com/package/commitstudio",
+  "installUrl": "https://www.npmjs.com/package/commitstudio",
+  "requirements": "Node.js 18+, Git",
+  "featureList": "AI code reviews, GitHub integration, CLI interface, YOLO mode, Standard mode"
+} 
