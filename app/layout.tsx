@@ -98,7 +98,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/meta/apple-touch-icon.png" />
-        <meta name="google-site-verification" content="ADD-YOUR-GOOGLE-VERIFICATION-CODE-HERE" />
+        <meta name="google-site-verification" content="tulzgQZaqPeUSjyp_g_j3grcuyxboP5kGmHBIKy9TH0" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
