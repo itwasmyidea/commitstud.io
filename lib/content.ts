@@ -38,7 +38,7 @@ export const howItWorksSteps = [
   },
   {
     title: "Review",
-    description: "AI analyzes your commits and delivers context-aware feedback.",
+    description: "AI analyzes your commits delivers context-aware feedback.",
     details: [
       "Automatically detects your Git repository and target commits",
       "Analyzes diffs using advanced AI models",
@@ -144,17 +144,23 @@ export const analyticsCardData = {
 
 // Package installer configs
 export const packageManagers = {
-  npm: {
-    global: "npm install -g commitstudio",
-    local: "npm install commitstudio",
+  npx: {
+    quick: "npx commitstudio",
   },
   pnpm: {
+    quick: "pnpm dlx commitstudio",
     global: "pnpm add -g commitstudio",
     local: "pnpm add commitstudio",
   },
   bun: {
+    quick: "bunx commitstudio",
     global: "bun add -g commitstudio",
     local: "bun add commitstudio",
+  },
+  npm: {
+    quick: "npx commitstudio",
+    global: "npm install -g commitstudio",
+    local: "npm install commitstudio",
   },
 };
 

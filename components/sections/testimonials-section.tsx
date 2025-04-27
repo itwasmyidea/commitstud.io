@@ -70,12 +70,17 @@ export default function TestimonialsSection() {
                       </div>
                       
                       <div className="flex items-center mt-4">
-                        <div className="rounded-full bg-zinc-800 w-10 h-10 flex items-center justify-center text-blue-400 font-semibold text-sm overflow-hidden">
+                        <div className="rounded-full aspect-square bg-zinc-800 min-w-10 min-h-10 flex items-center justify-center text-primary font-semibold text-sm overflow-hidden">
                           {testimonial.author.split(' ').map(name => name[0]).join('')}
                         </div>
                         <div className="ml-3">
                           <p className="font-medium text-zinc-200 text-sm">{testimonial.author}</p>
-                          <p className="text-zinc-500 text-xs">{testimonial.role}, {testimonial.company}</p>
+                          <p className="text-zinc-500 text-[10px]">
+                            {`${testimonial.role}, ${testimonial.company}`.length > 27 
+                              ? `${testimonial.role}, ${testimonial.company}`.substring(0, 24) + '...'
+                              : `${testimonial.role}, ${testimonial.company}`
+                            }
+                          </p>
                         </div>
                         <div className="ml-auto flex">
                           {[...Array(5)].map((_, i) => (

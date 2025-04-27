@@ -13,6 +13,7 @@ interface DocCardProps {
   description: string;
   link?: string;
   external?: boolean;
+  index: number;
 }
 
 export default function DocumentationSection() {
@@ -33,10 +34,10 @@ export default function DocumentationSection() {
     <section id="documentation" className="py-32 bg-zinc-950">
       <Container>
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, margin: "-50px" }}
           className="max-w-3xl mx-auto text-center mb-20"
         >
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tighter mb-6 brand-gradient-text">
@@ -54,6 +55,7 @@ export default function DocumentationSection() {
               description={item.description}
               link={item.link}
               external={item.external}
+              index={index}
             />
           ))}
         </div>
@@ -62,7 +64,7 @@ export default function DocumentationSection() {
   )
 }
 
-function DocCard({ icon, title, description, link, external }: DocCardProps) {
+function DocCard({ icon, title, description, link, external, index }: DocCardProps) {
   const CardWrapper = ({ children }: { children: React.ReactNode }) => {
     if (link) {
       return (
@@ -82,11 +84,15 @@ function DocCard({ icon, title, description, link, external }: DocCardProps) {
   return (
     <CardWrapper>
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: true, margin: "-100px" }}
-        className="bg-zinc-900 hover:cursor-pointer rounded-[0.75rem] group p-8 shadow-lg border border-zinc-800 h-full hover:bg-zinc-800 transition-all duration-300" 
+        transition={{ 
+          duration: 0.5, 
+          ease: [0.22, 1, 0.36, 1],
+          delay: index * 0.1
+        }}
+        viewport={{ once: true, amount: 0.3 }}
+        className="bg-zinc-900 hover:cursor-pointer rounded-lg group p-8 shadow-lg border border-zinc-800 h-full hover:bg-zinc-800 transition-all duration-300" 
       >
         <div className="w-12 h-12 bg-zinc-800 text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300 rounded-full flex items-center justify-center mb-6">{icon}</div>
         <h3 className="text-xl font-medium mb-3 text-zinc-100">{title}</h3>

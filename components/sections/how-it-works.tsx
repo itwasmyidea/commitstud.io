@@ -121,7 +121,7 @@ function StepCard({ step, index, isLast }: { step: Step; index: number; isLast: 
         />
         
         <div className="flex items-start gap-3">
-          <div className="bg-gradient-to-r from-blue-500 to-blue-600 w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
+          <div className="bg-gradient-to-r from-blue-500 to-blue-600 w-12 h-12 rounded-md shadow-lg flex items-center justify-center flex-shrink-0 shadow-lg">
             <div className="text-white">
               {step.icon}
             </div>

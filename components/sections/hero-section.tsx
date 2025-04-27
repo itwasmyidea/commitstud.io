@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, Copy, Check } from "lucide-react"
 import TerminalDemo from "@/components/ui/terminal-demo"
 import { Container } from "@/components/ui/container"
-import PackageInstaller from "@/components/ui/package-installer"
+import PackageInstaller, { PackageInstallerHandle } from "@/components/ui/package-installer"
 import { heroContent } from "@/lib/content"
 import { packageManagers } from "@/lib/content"
 
@@ -17,17 +17,20 @@ interface HeroSectionProps {
 export default function HeroSection({ onScrollTo }: HeroSectionProps) {
   const heroRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
+  const packageInstallerRef = useRef<PackageInstallerHandle>(null)
   const [copied, setCopied] = useState(false)
   
   // Title reveal effects
   const titleWords = heroContent.title
 
-  // Handle copy for Get Started button
+  // Handle copy for Get Started button - now uses the current package installer command
   const handleCopyInstallCommand = () => {
-    // Copy npm global command by default
-    navigator.clipboard.writeText(packageManagers.npm.global)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+    if (packageInstallerRef.current) {
+      const currentCommand = packageInstallerRef.current.getCurrentCommand()
+      navigator.clipboard.writeText(currentCommand)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    }
   }
 
   return (
@@ -99,7 +102,7 @@ export default function HeroSection({ onScrollTo }: HeroSectionProps) {
             </motion.p>
 
             {/* Package Installer Component */}
-            <PackageInstaller />
+            <PackageInstaller ref={packageInstallerRef} />
 
             {/* Call to action buttons */}
             <motion.div
@@ -114,7 +117,7 @@ export default function HeroSection({ onScrollTo }: HeroSectionProps) {
                 className="w-full sm:w-auto"
               >
                 <Button
-                  className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 transition-all duration-200 text-white rounded-full text-sm py-5 px-7 shadow-lg shadow-blue-500/20 relative overflow-hidden group w-full sm:w-auto"
+                  className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 transition-all duration-200 text-white rounded-md text-sm py-5 px-7 shadow-lg shadow-blue-500/20 relative overflow-hidden group w-full sm:w-auto"
                   onClick={handleCopyInstallCommand}
                 >
                   <motion.span 
@@ -143,7 +146,7 @@ export default function HeroSection({ onScrollTo }: HeroSectionProps) {
               >
                 <Button
                   variant="outline"
-                  className="border-zinc-700 text-zinc-200 hover:bg-zinc-800 rounded-full text-sm py-5 px-7 relative overflow-hidden w-full sm:w-auto"
+                  className="border-zinc-700 text-zinc-200 hover:bg-zinc-800 rounded-md text-sm py-5 px-7 relative overflow-hidden w-full sm:w-auto"
                   onClick={() => onScrollTo('how-it-works')}
                 >
                   <span className="relative z-10 flex items-center justify-center">
